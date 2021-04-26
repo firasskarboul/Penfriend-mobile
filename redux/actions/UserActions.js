@@ -6,8 +6,8 @@ export const signIn = ({ email, password }) => {
     return async (dispatch) => {
         dispatch({ type: 'DO_LOGIN', loading: true })
         await api.post('/login_check', {
-            username: 'karboulx',
-            password: 'firass'
+            username: email,
+            password: password
         })
             .then(async (res) => {
                 if (res.status == 200) {

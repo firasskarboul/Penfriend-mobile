@@ -34,17 +34,6 @@ export default class _Home extends React.Component {
                     >
                         <Text>Sign out</Text>
                     </TouchableOpacity>
-
-                    <TouchableOpacity style={{
-                        paddingVertical: 10,
-                        paddingHorizontal: 50,
-                        backgroundColor: 'white',
-                        borderRadius: 25
-                    }}
-                        onPress={() => this.props.navigation.navigate('details')}
-                    >
-                        <Text>Sign</Text>
-                    </TouchableOpacity>
                 </View>
 
                 <StatusBar style="auto" />
