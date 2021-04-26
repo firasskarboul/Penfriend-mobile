@@ -1,21 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import AuthStack from './components/AuthStack'
+import AppStack from './components/AppStack'
+import Detail from './screens/Details';
+import { Provider } from 'react-redux'
+import { store } from './redux/index';
 
 export default function App() {
+
+  const loggedIn = store.getState().userReducer.loggedIn
+
+  const Drawer = createDrawerNavigator();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <NavigationContainer>
+        {
+          loggedIn ? (
+            <Drawer.Navigator initialRouteName="App">
+              <Drawer.Screen name="App" component={AppStack} />
+              <Drawer.Screen name="details" component={Detail} />
+            </Drawer.Navigator>
+          ) : (
+            <AuthStack />
+          )
+        }
+      </NavigationContainer>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
