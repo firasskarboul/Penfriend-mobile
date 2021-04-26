@@ -74,18 +74,6 @@ class _SignIn extends React.Component {
                         secureTextEntry
                     />
 
-                    {
-                        loading
-                            ?
-                            <View style={{
-                                marginBottom: 15
-                            }}>
-                                <ActivityIndicator size="small" color="#0000ff" />
-                            </View>
-                            :
-                            null
-                    }
-
                     <TouchableOpacity
                         style={{
                             height: 40,
@@ -97,7 +85,15 @@ class _SignIn extends React.Component {
                         }}
                         onPress={() => signIn({ email: this.state.email, password: this.state.password })}
                     >
-                        <Text>Sign In</Text>
+
+                        {
+                            loading
+                                ?
+                                <ActivityIndicator size="small" color="#0000ff" />
+                                :
+                                <Text>Sign In</Text>
+                        }
+
                     </TouchableOpacity>
 
                 </KeyboardAvoidingView>
@@ -163,7 +159,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         marginBottom: 15
     },
-    
+
     animationView: {
         flexGrow: 1,
         alignItems: 'center',
