@@ -9,6 +9,7 @@ import { FifthPage } from '../../components/signup/fifthPage'
 import Footer from '../../components/signup/Footer'
 import { connect } from 'react-redux'
 import { useNavigation } from '@react-navigation/native'
+import { signUp } from '../../redux/index'
 
 const _SignUp = (props) => {
 
@@ -20,7 +21,7 @@ const _SignUp = (props) => {
         pagerRef.current.setPage(pageNumber);
     };
 
-    const { userReducer } = props
+    const { userReducer, signUp } = props
 
     const {
         email,
@@ -32,8 +33,8 @@ const _SignUp = (props) => {
         gender,
         birthday,
         familySelfie,
-        parentSelfie
-
+        parentSelfie,
+        loading
     } = userReducer
 
     return (
@@ -101,8 +102,18 @@ const _SignUp = (props) => {
                         backgroundColor="#2980b9"
                         rightButtonLabel="Submit"
                         rightButtonPress={() => {
-                            console.log(userReducer)
-                            // navigation.navigate('GetStarted')
+                            signUp({
+                                email: email,
+                                firstName: firstName,
+                                lastName: lastName,
+                                password: password,
+                                nationality: nationality,
+                                phoneNumber: phoneNumber,
+                                gender: gender,
+                                birthday: birthday,
+                                familySelfie: familySelfie,
+                                parentSelfie: parentSelfie,
+                            })
                         }}
                         leftButtonLabel="Back"
                         leftButtonPress={() => {
@@ -120,6 +131,6 @@ const mapStateToProps = (state) => ({
     userReducer: state.userReducer
 })
 
-const SignUp = connect(mapStateToProps)(_SignUp)
+const SignUp = connect(mapStateToProps, { signUp })(_SignUp)
 
 export { SignUp };
