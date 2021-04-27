@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native'
+import { connect } from 'react-redux'
 
-const SecondPage = () => {
+const _SecondPage = (props) => {
 
   const [selected, setSelected] = useState('female')
+
+  const { GENDER } = props
 
   return (
     <View
@@ -31,7 +34,10 @@ const SecondPage = () => {
             borderRadius: 100,
             marginBottom: 20
           }}
-            onPress={() => setSelected('female')}
+            onPress={() => {
+              setSelected('female')
+              GENDER('female')
+            }}
           >
 
           </TouchableOpacity>
@@ -49,7 +55,10 @@ const SecondPage = () => {
             borderRadius: 100,
             marginBottom: 20
           }}
-            onPress={() => setSelected('male')}
+            onPress={() => {
+              setSelected('male')
+              GENDER('male')
+            }}
           >
 
           </TouchableOpacity>
@@ -61,6 +70,14 @@ const SecondPage = () => {
     </View>
   );
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  GENDER: (gender) => {
+    dispatch({type: 'GENDER', gender: gender})
+  }
+})
+
+const SecondPage = connect(null, mapDispatchToProps)(_SecondPage)
 
 const styles = StyleSheet.create({
   container: {
@@ -95,4 +112,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default SecondPage;
+export { SecondPage };

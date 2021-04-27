@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, View, Text, Dimensions, Button, Image } from 'react-native'
+import { StyleSheet, View, Text, Dimensions, Image } from 'react-native'
 import * as ImagePicker from 'expo-image-picker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { connect } from 'react-redux'
 
-const FourthPage = () => {
+const _FourthPage = (props) => {
 
   const [familyImage, setFamilyImage] = useState(null);
 
   const family_avatar = require('../../assets/images/family_avatar.png')
+
+  const { FAMILY_IMAGE } = props
 
   useEffect(() => {
     (async () => {
@@ -18,6 +21,8 @@ const FourthPage = () => {
         }
       }
     })();
+
+    FAMILY_IMAGE('../../assets/images/family_avatar.png')
   }, []);
 
   const pickImage = async () => {
@@ -27,11 +32,10 @@ const FourthPage = () => {
       aspect: [4, 3],
       quality: 1,
     });
-
-    console.log(result);
-
+    
     if (!result.cancelled) {
-      setFamilyImage(result.uri);
+      setFamilyImage(result.uri)
+      FAMILY_IMAGE(result.uri)
     }
   };
 
@@ -53,6 +57,14 @@ const FourthPage = () => {
     </View>
   );
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  FAMILY_IMAGE: (familyPhoto) => {
+    dispatch({ type: 'FAMILY_IMAGE', familySelfie: familyPhoto })
+  }
+})
+
+const FourthPage = connect(null, mapDispatchToProps)(_FourthPage)
 
 const styles = StyleSheet.create({
   container: {
@@ -94,4 +106,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default FourthPage;
+export { FourthPage };

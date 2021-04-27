@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, View, Text, Dimensions, Button, Image } from 'react-native'
+import { StyleSheet, View, Text, Dimensions, Image } from 'react-native'
 import * as ImagePicker from 'expo-image-picker';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { connect } from 'react-redux'
 
-const FifthPage = () => {
+const _FifthPage = (props) => {
 
   const [parentImage, setParentImage] = useState(null);
 
   const family_avatar = require('../../assets/images/father_avatar.png')
+
+  const { PARENT_IMAGE } = props
 
   useEffect(() => {
     (async () => {
@@ -18,6 +21,8 @@ const FifthPage = () => {
         }
       }
     })();
+
+    PARENT_IMAGE('../../assets/images/father_avatar.png')
   }, []);
 
   const pickImage = async () => {
@@ -30,6 +35,7 @@ const FifthPage = () => {
 
     if (!result.cancelled) {
       setParentImage(result.uri);
+      PARENT_IMAGE(result.uri)
     }
   };
 
@@ -53,6 +59,14 @@ const FifthPage = () => {
     </View>
   );
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  PARENT_IMAGE: (parentPhoto) => {
+    dispatch({ type: 'PARENT_IMAGE', parentSelfie: parentPhoto })
+  }
+})
+
+const FifthPage = connect(null, mapDispatchToProps)(_FifthPage)
 
 const styles = StyleSheet.create({
   container: {
@@ -94,4 +108,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default FifthPage;
+export {FifthPage};

@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, Dimensions, KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Dimensions, KeyboardAvoidingView, Platform } from 'react-native'
+import { connect } from 'react-redux'
 
-const FirstPage = () => {
+const _FirstPage = (props) => {
 
   const [signUpForm, setSignUpForm] = useState({
+    type: 'PERSONAL_INFOS',
     firstName: '',
     lastName: '',
     email: '',
     password: '',
     nationality: '',
-    gender: '',
     phoneNumber: '',
-    blueCard: '',
-    birthday: '',
-    parentSelfie: '',
-    familySelfie: ''
   })
+
+  const { PERSONAL_INFOS } = props
+
 
   return (
     <View
@@ -45,28 +45,40 @@ const FirstPage = () => {
 
         <TextInput
           style={styles.inputText}
-          onChangeText={firstName => setSignUpForm({ firstName: firstName })}
+          onChangeText={(firstName) => {
+            setSignUpForm({ ...signUpForm, firstName: firstName })
+            PERSONAL_INFOS(signUpForm)
+          }}
           placeholder='First Name'
           placeholderTextColor='rgba(236, 240, 241,0.5)'
         />
 
         <TextInput
           style={styles.inputText}
-          onChangeText={lastName => setSignUpForm({ lastName: lastName })}
+          onChangeText={lastName => {
+            setSignUpForm({ ...signUpForm, lastName: lastName })
+            PERSONAL_INFOS(signUpForm)
+          }}
           placeholder='Last Name'
           placeholderTextColor='rgba(236, 240, 241,0.5)'
         />
 
         <TextInput
           style={styles.inputText}
-          onChangeText={nationality => setSignUpForm({ nationality: nationality })}
+          onChangeText={nationality => {
+            setSignUpForm({ ...signUpForm, nationality: nationality })
+            PERSONAL_INFOS(signUpForm)
+          }}
           placeholder='Nationality'
           placeholderTextColor='rgba(236, 240, 241,0.5)'
         />
 
         <TextInput
           style={styles.inputText}
-          onChangeText={phoneNumber => setSignUpForm({ phoneNumber: phoneNumber })}
+          onChangeText={phoneNumber => {
+            setSignUpForm({ ...signUpForm, phoneNumber: phoneNumber })
+            PERSONAL_INFOS(signUpForm)
+          }}
           placeholder='Phone Number'
           placeholderTextColor='rgba(236, 240, 241,0.5)'
           keyboardType={Platform.OS == 'ios' ? 'phone-pad' : 'numeric'}
@@ -74,7 +86,10 @@ const FirstPage = () => {
 
         <TextInput
           style={styles.inputText}
-          onChangeText={email => setSignUpForm({ email: email })}
+          onChangeText={email => {
+            setSignUpForm({ ...signUpForm, email: email })
+            PERSONAL_INFOS(signUpForm)
+          }}
           placeholder='Email'
           placeholderTextColor='rgba(236, 240, 241,0.5)'
           keyboardType='email-address'
@@ -82,20 +97,32 @@ const FirstPage = () => {
 
         <TextInput
           style={styles.inputText}
-          onChangeText={password => setSignUpForm({ password: password })}
+          onChangeText={password => {
+            setSignUpForm({ ...signUpForm, password: password })
+            PERSONAL_INFOS(signUpForm)
+          }}
           placeholder='Password'
           placeholderTextColor='rgba(236, 240, 241,0.5)'
           secureTextEntry
         />
-
       </KeyboardAvoidingView>
     </View>
   );
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  PERSONAL_INFOS: (obj) => {
+    dispatch(obj)
+  }
+})
+
+const FirstPage = connect(null, mapDispatchToProps)(_FirstPage)
+
+
 const styles = StyleSheet.create({
   inputText: {
     height: 40,
+    color: 'white',
     width: Dimensions.get('window').width - 80,
     borderColor: 'white',
     borderWidth: 1,
@@ -114,4 +141,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default FirstPage;
+export { FirstPage };

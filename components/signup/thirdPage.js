@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Text, Platform, Button, Dimensions } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker'
+import { connect } from 'react-redux'
 
-const ThirdPage = () => {
+const _ThirdPage = (props) => {
 
-  const [date, setDate] = useState(new Date(1598051730000));
+  const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
 
@@ -12,7 +13,10 @@ const ThirdPage = () => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
+    BIRTHDAY(currentDate.getDate() + '/' + (currentDate.getMonth()+1) + '/' + currentDate.getFullYear())
   };
+
+  const { BIRTHDAY } = props
 
   return (
     <View style={styles.container}>
@@ -40,12 +44,20 @@ const ThirdPage = () => {
             width: Dimensions.get('window').width - 80,
           }}
           textColor='white'
-          maximumDate={new Date(2020, 11, 31)}
+          maximumDate={new Date()}
         />
       </View>
     </View>
   );
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  BIRTHDAY: (date) => {
+    dispatch({type: 'BIRTHDAY', birthday: date})
+  }
+})
+
+const ThirdPage = connect(null, mapDispatchToProps)(_ThirdPage)
 
 const styles = StyleSheet.create({
   container: {
@@ -81,4 +93,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ThirdPage;
+export {ThirdPage};
