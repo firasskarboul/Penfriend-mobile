@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import AuthStack from './AuthStack'
@@ -9,8 +9,6 @@ import { connect } from 'react-redux'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function _AppNavigation(props) {
-
-    // const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     const { userReducer, DO_LOGIN } = props
 
@@ -24,7 +22,6 @@ export default function _AppNavigation(props) {
         try {
             const token = await AsyncStorage.getItem('token')
             if (token !== null) {
-                // dispatch({ type: 'DO_LOGIN', token: token, loading: false, loggedIn: true })
                 DO_LOGIN(token)
             }
         } catch (e) {

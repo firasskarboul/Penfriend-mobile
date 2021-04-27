@@ -62,7 +62,7 @@ class _SignIn extends React.Component {
                         style={styles.inputText}
                         onChangeText={email => this.setState({ email: email })}
                         placeholder='Email'
-                        placeholderTextColor='rgba(52, 73, 94,0.5)'
+                        placeholderTextColor='rgba(236, 240, 241,0.5)'
                         keyboardType='email-address'
                     />
 
@@ -70,7 +70,7 @@ class _SignIn extends React.Component {
                         style={styles.inputText}
                         onChangeText={password => this.setState({ password: password })}
                         placeholder='Password'
-                        placeholderTextColor='rgba(52, 73, 94,0.5)'
+                        placeholderTextColor='rgba(236, 240, 241,0.5)'
                         secureTextEntry
                     />
 
