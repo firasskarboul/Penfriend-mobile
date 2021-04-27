@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { View } from 'react-native'
+import { ActivityIndicator, View, useWindowDimensions } from 'react-native'
 import ViewPager from '@react-native-community/viewpager'
 import { FirstPage } from '../../components/signup/firstPage'
 import { SecondPage } from '../../components/signup/secondPage'
@@ -22,6 +22,10 @@ const _SignUp = (props) => {
     };
 
     const { userReducer, signUp } = props
+
+    const windowWidth = useWindowDimensions().width;
+    const HEIGHT = windowWidth * 0.21;
+    const FOOTER_PADDING = windowWidth * 0.1;
 
     const {
         email,
@@ -98,28 +102,43 @@ const _SignUp = (props) => {
 
                 <View key="6">
                     <FourthPage />
-                    <Footer
-                        backgroundColor="#2980b9"
-                        rightButtonLabel="Submit"
-                        rightButtonPress={() => {
-                            signUp({
-                                email: email,
-                                firstName: firstName,
-                                lastName: lastName,
-                                password: password,
-                                nationality: nationality,
-                                phoneNumber: phoneNumber,
-                                gender: gender,
-                                birthday: birthday,
-                                familySelfie: familySelfie,
-                                parentSelfie: parentSelfie,
-                            })
-                        }}
-                        leftButtonLabel="Back"
-                        leftButtonPress={() => {
-                            handlePageChange(3)
-                        }}
-                    />
+                    {loading
+                        ?
+                        <View style={{
+                            backgroundColor: "#2980b9",
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+                            height: HEIGHT,
+                            opacity: 0.6,
+                            alignItems: 'center',
+                            paddingHorizontal: FOOTER_PADDING
+                        }}>
+                            <ActivityIndicator size="small" color="#0000ff" />
+                        </View>
+                        :
+                        <Footer
+                            backgroundColor="#2980b9"
+                            rightButtonLabel="Submit"
+                            rightButtonPress={() => {
+                                signUp({
+                                    email: email,
+                                    firstName: firstName,
+                                    lastName: lastName,
+                                    password: password,
+                                    nationality: nationality,
+                                    phoneNumber: phoneNumber,
+                                    gender: gender,
+                                    birthday: birthday,
+                                    familySelfie: familySelfie,
+                                    parentSelfie: parentSelfie,
+                                })
+                            }}
+                            leftButtonLabel="Back"
+                            leftButtonPress={() => {
+                                handlePageChange(3)
+                            }}
+                        />
+                    }
 
                 </View>
             </ViewPager>

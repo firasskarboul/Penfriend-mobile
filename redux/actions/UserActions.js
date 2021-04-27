@@ -21,6 +21,7 @@ export const signIn = ({ email, password }) => {
             })
             .catch((e) => {
                 dispatch({ type: 'ON_ERROR', token: null, loading: false })
+                alert('Wrong email or password')
                 console.log('error')
             })
     }
@@ -48,16 +49,24 @@ export const signUp = ({ firstName, lastName, email, password, gender, birthday,
             status: "Inactive",
         })
             .then(async (res) => {
-                alert('DONE!' + res)
-
-                // if (res.status == 200) {
-                //     try {
-                //         await AsyncStorage.setItem('token', res.data.token)
-                //         dispatch({ type: 'DO_LOGIN', token: res.data.token, loading: false, loggedIn: true })
-                //     } catch (e) {
-                //         console.log(e)
-                //     }
-                // }
+                await api.post('/login_check', {
+                    username: email,
+                    password: password
+                })
+                    .then(async (res) => {
+                        if (res.status == 200) {
+                            try {
+                                await AsyncStorage.setItem('token', res.data.token)
+                                dispatch({ type: 'DO_LOGIN', token: res.data.token, loading: false, loggedIn: true })
+                            } catch (e) {
+                                console.log(e)
+                            }
+                        }
+                    })
+                    .catch((e) => {
+                        dispatch({ type: 'ON_ERROR', token: null, loading: false })
+                        console.log('error')
+                    })
             })
             .catch((e) => {
                 alert('Few Informations are missing')
