@@ -3,11 +3,11 @@ import { StyleSheet, View, Text, Dimensions, Button, Image } from 'react-native'
 import * as ImagePicker from 'expo-image-picker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const FourthPage = () => {
+const FifthPage = () => {
 
-  const [familyImage, setFamilyImage] = useState(null);
+  const [parentImage, setParentImage] = useState(null);
 
-  const family_avatar = require('../../assets/images/family_avatar.png')
+  const family_avatar = require('../../assets/images/father_avatar.png')
 
   useEffect(() => {
     (async () => {
@@ -28,10 +28,8 @@ const FourthPage = () => {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
-      setFamilyImage(result.uri);
+      setParentImage(result.uri);
     }
   };
 
@@ -41,15 +39,17 @@ const FourthPage = () => {
         justifyContent: 'center',
         alignItems: 'center'
       }}>
-        <Text style={styles.title}>Family Photo</Text>
+        <Text style={styles.title}>Parent Photo</Text>
       </View>
+
       <TouchableOpacity style={{
         justifyContent: 'center',
         alignItems: 'center'
       }} onPress={pickImage}>
-        <Image source={familyImage !== null ? { uri: familyImage } : family_avatar} style={{ width: 200, height: 200, borderRadius: 100, marginTop: 100 }} />
-        <Text style={{ textAlign: 'center', color: 'yellow', margin: 50 }}>Select an image that contain you and all your kids that are going to have profiles in Penfriend</Text>
+        <Image source={parentImage !== null ? { uri: parentImage } : family_avatar} style={{ width: 200, height: 200, borderRadius: 100, marginTop: 100 }} />
+        <Text style={{ textAlign: 'center', color: 'yellow', margin: 50 }}>Select a real photo containing your face</Text>
       </TouchableOpacity>
+
     </View>
   );
 };
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default FourthPage;
+export default FifthPage;

@@ -5,6 +5,7 @@ import FirstPage from '../../components/signup/firstPage'
 import SecondPage from '../../components/signup/secondPage'
 import ThirdPage from '../../components/signup/thirdPage'
 import FourthPage from '../../components/signup/fourthPage'
+import FifthPage from '../../components/signup/fifthPage'
 import Footer from '../../components/signup/Footer'
 import { useNavigation } from '@react-navigation/native'
 
@@ -75,7 +76,23 @@ const Onboarding = () => {
 
                 </View>
 
-                <View key="4">
+                <View key="5">
+                    <FifthPage />
+                    <Footer
+                        backgroundColor="#2980b9"
+                        rightButtonLabel="Next"
+                        rightButtonPress={() => {
+                            handlePageChange(4)
+                        }}
+                        leftButtonLabel="Back"
+                        leftButtonPress={() => {
+                            handlePageChange(2);
+                        }}
+                    />
+
+                </View>
+
+                <View key="6">
                     <FourthPage />
                     <Footer
                         backgroundColor="#2980b9"
@@ -85,7 +102,7 @@ const Onboarding = () => {
                         }}
                         leftButtonLabel="Back"
                         leftButtonPress={() => {
-                            handlePageChange(2);
+                            handlePageChange(3);
                         }}
                     />
 
