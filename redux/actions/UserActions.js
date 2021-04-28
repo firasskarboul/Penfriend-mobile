@@ -70,7 +70,8 @@ export const signUp = ({ firstName, lastName, email, password, gender, birthday,
             })
             .catch((e) => {
                 alert('Few Informations are missing')
-                console.log('error')
+                dispatch({ type: 'ON_ERROR', token: null, loading: false })
+                console.log('error' + e)
             })
     }
 }

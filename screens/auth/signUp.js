@@ -50,6 +50,11 @@ const _SignUp = (props) => {
                         backgroundColor="#2980b9"
                         rightButtonLabel="Next"
                         rightButtonPress={() => {
+                            ( email == '' || firstName == '' || lastName == '' || password == '' || 
+                            nationality == '' || phoneNumber == '' )
+                            ?
+                            alert('Please, fill all the form !')
+                            :
                             handlePageChange(1)
                         }}
                     />
@@ -113,12 +118,12 @@ const _SignUp = (props) => {
                             alignItems: 'center',
                             paddingHorizontal: FOOTER_PADDING
                         }}>
-                            <ActivityIndicator size="small" color="#0000ff" />
+                            <ActivityIndicator size="small" color="#fff" />
                         </View>
                         :
                         <Footer
                             backgroundColor="#2980b9"
-                            rightButtonLabel="Submit"
+                            rightButtonLabel="Register"
                             rightButtonPress={() => {
                                 signUp({
                                     email: email,
