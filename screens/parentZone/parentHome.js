@@ -3,13 +3,10 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { connect } from 'react-redux'
-import { signOut } from '../redux/index';
 
-export default class _Home extends React.Component {
+export default class _ParentHome extends React.Component {
 
     render() {
-
-        const { signOut } = this.props
 
         return (
             <View style={styles.container}>
@@ -31,49 +28,14 @@ export default class _Home extends React.Component {
                         marginBottom: 20
                     }}
                         onPress={() => {
-                            this.props.navigation.navigate('Kids Home')
+                            
                         }}
                     >
 
                     </TouchableOpacity>
-                    <Text style={styles.gender}>Kids Zone</Text>
+                    <Text style={styles.gender}>Parent Home</Text>
                 </View>
 
-                <View style={{
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}>
-                    <TouchableOpacity style={{
-                        backgroundColor: '#a29bfe',
-                        width: 150,
-                        height: 150,
-                        borderRadius: 100,
-                        marginBottom: 20
-                    }}
-                        onPress={() => {
-                            this.props.navigation.navigate('Parent Home')
-                        }}
-                    >
-
-                    </TouchableOpacity>
-                    <Text style={styles.gender}>PARENTS ZONE</Text>
-                </View>
-
-                <View style={{
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
-                    <TouchableOpacity style={{
-                        paddingVertical: 10,
-                        paddingHorizontal: 50,
-                        backgroundColor: 'white',
-                        borderRadius: 25
-                    }}
-                        onPress={() => signOut()}
-                    >
-                        <Text>Sign out</Text>
-                    </TouchableOpacity>
-                </View>
                 <StatusBar style="auto" />
             </View>
         );
@@ -84,11 +46,11 @@ const mapStateToProps = (state) => ({
     userReducer: state.userReducer
 })
 
-const Home = connect(mapStateToProps, { signOut })(
-    _Home
+const ParentHome = connect(mapStateToProps)(
+    _ParentHome
 )
 
-export { Home };
+export { ParentHome };
 
 const styles = StyleSheet.create({
     container: {

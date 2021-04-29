@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import { ActivityIndicator, View, useWindowDimensions } from 'react-native'
 import ViewPager from '@react-native-community/viewpager'
 import { FirstPage } from '../../components/signup/firstPage'
@@ -8,12 +8,9 @@ import { FourthPage } from '../../components/signup/fourthPage'
 import { FifthPage } from '../../components/signup/fifthPage'
 import Footer from '../../components/signup/Footer'
 import { connect } from 'react-redux'
-import { useNavigation } from '@react-navigation/native'
 import { signUp } from '../../redux/index'
 
 const _SignUp = (props) => {
-
-    const navigation = useNavigation();
 
     const pagerRef = useRef(null);
 

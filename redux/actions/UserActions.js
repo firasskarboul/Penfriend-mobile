@@ -47,26 +47,13 @@ export const signUp = ({ firstName, lastName, email, password, gender, birthday,
             selfie: parentSelfie,
             BleuCarte: "",
             status: "Inactive",
+            genre: gender,
+            dateNaissance: birthday,
+            nationalite: nationality,
+            bleuCarte: ""
         })
             .then(async (res) => {
-                await api.post('/login_check', {
-                    username: email,
-                    password: password
-                })
-                    .then(async (res) => {
-                        if (res.status == 200) {
-                            try {
-                                await AsyncStorage.setItem('token', res.data.token)
-                                dispatch({ type: 'DO_LOGIN', token: res.data.token, loading: false, loggedIn: true })
-                            } catch (e) {
-                                console.log(e)
-                            }
-                        }
-                    })
-                    .catch((e) => {
-                        dispatch({ type: 'ON_ERROR', token: null, loading: false })
-                        console.log('error')
-                    })
+                console.log(res.status)
             })
             .catch((e) => {
                 alert('Few Informations are missing')
