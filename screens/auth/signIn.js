@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Dimensions, TextInput, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Dimensions, TextInput, KeyboardAvoidingView, ActivityIndicator, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import LottieView from 'lottie-react-native';
 import { connect } from 'react-redux'
@@ -16,11 +16,11 @@ class _SignIn extends React.Component {
         };
     }
 
-    componentDidMount() {
-        this.animation.play();
-        // Or set a specific startFrame and endFrame with:
-        // this.animation.play(30, 120);
-    }
+    // componentDidMount() {
+    //     this.animation.play();
+    //     // Or set a specific startFrame and endFrame with:
+    //     // this.animation.play(30, 120);
+    // }
 
     render() {
 
@@ -32,11 +32,11 @@ class _SignIn extends React.Component {
             <View style={styles.container}>
                 <LinearGradient
                     // Background Linear Gradient
-                    colors={['rgba(46, 204, 113,1.0)', 'rgba(52, 152, 219,1.0)']}
+                    colors={['rgba(130,182,255, 0.9)', 'rgba(132,255,159,0.9)']}
                     style={styles.background}
                 />
 
-                <View style={styles.animationView}>
+                {/* <View style={styles.animationView}>
                     <LottieView
                         ref={animation => {
                             this.animation = animation;
@@ -47,7 +47,7 @@ class _SignIn extends React.Component {
                         }}
                         source={require('../../assets/lottie_animations/login-animation.json')}
                     />
-                </View>
+                </View> */}
 
                 <KeyboardAvoidingView style={{
                     flexGrow: 1,
@@ -57,12 +57,22 @@ class _SignIn extends React.Component {
                     behavior="padding"
                     enabled
                 >
-
+                    <View>
+                        <Image
+                            source={require('../../assets/images/login_kids.png')}
+                            style={{
+                                width: 280,
+                                height: 280,
+                                marginBottom: 10
+                            }}
+                        >
+                        </Image>
+                    </View>
                     <TextInput
                         style={styles.inputText}
                         onChangeText={email => this.setState({ email: email })}
                         placeholder='Email'
-                        placeholderTextColor='rgba(236, 240, 241,0.5)'
+                        placeholderTextColor='white'
                         keyboardType='email-address'
                     />
 
@@ -70,7 +80,7 @@ class _SignIn extends React.Component {
                         style={styles.inputText}
                         onChangeText={password => this.setState({ password: password })}
                         placeholder='Password'
-                        placeholderTextColor='rgba(236, 240, 241,0.5)'
+                        placeholderTextColor='white'
                         secureTextEntry
                     />
 
@@ -80,7 +90,7 @@ class _SignIn extends React.Component {
                             width: Dimensions.get('window').width - 200,
                             alignItems: 'center',
                             justifyContent: 'center',
-                            backgroundColor: 'white',
+                            backgroundColor: '#edff8f',
                             borderRadius: 25,
                         }}
                         onPress={() => signIn({ email: this.state.email, password: this.state.password })}
@@ -95,6 +105,26 @@ class _SignIn extends React.Component {
                         }
 
                     </TouchableOpacity>
+                    <View style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}>
+                        <Text style={{ marginTop: 10 }}>or</Text>
+                        <TouchableOpacity
+                            style={{
+                                height: 40,
+                                width: Dimensions.get('window').width - 250,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: '#ff9668',
+                                borderRadius: 25,
+                                marginTop: 10
+                            }}
+                            // onPress={() => this.navigation.navigate('')} navigation to signup
+                        >
+                            <Text style={{color: 'white'}}>Sign Up</Text>
+                        </TouchableOpacity>
+                    </View>
 
                 </KeyboardAvoidingView>
 

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, Image, TouchableOpacity, View, Dimensions, SafeAreaView, FlatList } from 'react-native';
+import { StyleSheet, Text, Image, TouchableOpacity, View, Dimensions, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import LottieView from 'lottie-react-native'
 import { connect } from 'react-redux'
@@ -34,7 +34,8 @@ export default class _ParentHome extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: [],
+            isLoading: false
         }
     }
 
@@ -45,8 +46,9 @@ export default class _ParentHome extends React.Component {
         // this.animation.play(30, 120);
     }
 
-    githubGetUrl = () => {
-        axios.get('https://jsonplaceholder.typicode.com/todos')
+    githubGetUrl = async () => {
+        this.setState({ isLoading: true })
+        await axios.get('https://jsonplaceholder.typicode.com/todos')
             .then((response) => {
                 this.setState({ data: response.data })
             })
@@ -54,6 +56,7 @@ export default class _ParentHome extends React.Component {
                 // handle error
                 console.log(error);
             })
+        this.setState({ isLoading: false })
     }
 
     render() {
@@ -72,19 +75,25 @@ export default class _ParentHome extends React.Component {
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}>
-                    <FlatList
-                        data={this.state.data}
-                        renderItem={renderItem}
-                        keyExtractor={item => item.id}
-                        numColumns={2}
-                        showsHorizontalScrollIndicator={false}
-                        showsVerticalScrollIndicator={false}
-                    />
+                    {
+                        this.state.isLoading
+                            ?
+                            <ActivityIndicator size="small" color="#0000ff" />
+                            :
+                            <FlatList
+                                data={this.state.data}
+                                renderItem={renderItem}
+                                keyExtractor={item => item.id}
+                                numColumns={2}
+                                showsHorizontalScrollIndicator={false}
+                                showsVerticalScrollIndicator={false}
+                            />
+                    }
                     <TouchableOpacity style={{
                         width: 100,
                         height: 100,
-                        alignItems:'center',
-                        justifyContent:'center'
+                        alignItems: 'center',
+                        justifyContent: 'center'
                     }} onPress={() => alert('added!')}>
                         <LottieView
                             source={require('../../assets/lottie_animations/add.json')}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, Dimensions, KeyboardAvoidingView, Platform } from 'react-native'
 import { connect } from 'react-redux'
+import { LinearGradient } from 'expo-linear-gradient';
 
 const _FirstPage = (props) => {
 
@@ -23,9 +24,13 @@ const _FirstPage = (props) => {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#07689f'
       }}
     >
+      <LinearGradient
+        // Background Linear Gradient
+        colors={['rgba(130,182,255, 0.9)', 'rgba(248, 165, 194,1.0)']}
+        style={styles.background}
+      />
       <View style={{
         flexGrow: 1,
         alignItems: 'center',
@@ -129,6 +134,14 @@ const styles = StyleSheet.create({
     paddingLeft: 14,
     borderRadius: 25,
     marginBottom: 15
+  },
+
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: Dimensions.get('window').height
   },
 
   title: {

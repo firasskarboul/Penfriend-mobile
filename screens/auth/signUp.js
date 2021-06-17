@@ -47,12 +47,12 @@ const _SignUp = (props) => {
                         backgroundColor="#2980b9"
                         rightButtonLabel="Next"
                         rightButtonPress={() => {
-                            ( email == '' || firstName == '' || lastName == '' || password == '' || 
-                            nationality == '' || phoneNumber == '' )
-                            ?
-                            alert('Please, fill all the form !')
-                            :
-                            handlePageChange(1)
+                            (email == '' || firstName == '' || lastName == '' || password == '' ||
+                                nationality == '' || phoneNumber == '')
+                                ?
+                                alert('Please, fill all the form !')
+                                :
+                                handlePageChange(1)
                         }}
                     />
                 </View>
