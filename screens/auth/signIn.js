@@ -59,73 +59,82 @@ class _SignIn extends React.Component {
                     behavior="padding"
                     enabled
                 >
-                    <View>
+                    <View style={{
+                        flexGrow: 1,
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
                         <Image
-                            source={require('../../assets/images/login_kids.png')}
+                            source={require('../../assets/images/getStarted/signin/earth.png')}
                             style={{
-                                width: 280,
-                                height: 280,
-                                marginBottom: 10
+                                width: 350,
+                                height: 350
                             }}
                         >
                         </Image>
                     </View>
-                    <TextInput
-                        style={styles.inputText}
-                        onChangeText={email => this.setState({ email: email })}
-                        placeholder='Email'
-                        placeholderTextColor='white'
-                        keyboardType='email-address'
-                    />
-
-                    <TextInput
-                        style={styles.inputText}
-                        onChangeText={password => this.setState({ password: password })}
-                        placeholder='Password'
-                        placeholderTextColor='white'
-                        secureTextEntry
-                    />
-
-                    <TouchableOpacity
-                        style={{
-                            height: 40,
-                            width: Dimensions.get('window').width - 200,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            backgroundColor: '#edff8f',
-                            borderRadius: 25,
-                        }}
-                        onPress={() => signIn({ email: this.state.email, password: this.state.password })}
-                    >
-
-                        {
-                            loading
-                                ?
-                                <ActivityIndicator size="small" color="#0000ff" />
-                                :
-                                <Text>Sign In</Text>
-                        }
-
-                    </TouchableOpacity>
                     <View style={{
-                        alignItems: 'center',
+                        flexGrow: 1,
                         justifyContent: 'center',
+                        alignItems: 'center'
                     }}>
-                        <Text style={{ marginTop: 10 }}>or</Text>
+                        <TextInput
+                            style={styles.inputText}
+                            onChangeText={email => this.setState({ email: email })}
+                            placeholder='Email'
+                            placeholderTextColor='white'
+                            keyboardType='email-address'
+                        />
+
+                        <TextInput
+                            style={styles.inputText}
+                            onChangeText={password => this.setState({ password: password })}
+                            placeholder='Password'
+                            placeholderTextColor='white'
+                            secureTextEntry
+                        />
+
                         <TouchableOpacity
                             style={{
                                 height: 40,
-                                width: Dimensions.get('window').width - 250,
+                                width: Dimensions.get('window').width - 200,
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                backgroundColor: '#ff9668',
+                                backgroundColor: '#edff8f',
                                 borderRadius: 25,
-                                marginTop: 10
                             }}
-                            // onPress={() => this.navigation.navigate('')} navigation to signup
+                            onPress={() => signIn({ email: this.state.email, password: this.state.password })}
                         >
-                            <Text style={{color: 'white'}}>Sign Up</Text>
+
+                            {
+                                loading
+                                    ?
+                                    <ActivityIndicator size="small" color="#0000ff" />
+                                    :
+                                    <Text>Sign In</Text>
+                            }
+
                         </TouchableOpacity>
+                        <View style={{
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}>
+                            <Text style={{ marginTop: 10 }}>or</Text>
+                            <TouchableOpacity
+                                style={{
+                                    height: 40,
+                                    width: Dimensions.get('window').width - 250,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    backgroundColor: '#ff9668',
+                                    borderRadius: 25,
+                                    marginTop: 10
+                                }}
+                            // onPress={() => this.navigation.navigate('')} navigation to signup
+                            >
+                                <Text style={{ color: 'white' }}>Sign Up</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
 
                 </KeyboardAvoidingView>

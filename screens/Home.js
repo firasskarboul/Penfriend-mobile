@@ -67,7 +67,7 @@ export default class _Home extends React.Component {
                         </TouchableOpacity>
                     </View>
 
-                    {/* <View style={{
+                    <View style={{
                         alignItems: 'center',
                         justifyContent: 'center'
                     }}>
@@ -81,7 +81,7 @@ export default class _Home extends React.Component {
                         >
                             <Text>Sign out</Text>
                         </TouchableOpacity>
-                    </View> */}
+                    </View>
                     <StatusBar style="auto" />
                 </ImageBackground>
             </View>
