@@ -7,15 +7,15 @@ import { KidsHome } from '../screens/kidZone/kidsHome'
 
 const Stack = createStackNavigator();
 
-export default function AuthStack() {
+export default function KidStack() {
 
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="Kids Zone"
       screenOptions={{
         headerShown: false
       }}>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Kids Zone" component={KidsHome} />
     </Stack.Navigator>
   );
 }

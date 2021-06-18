@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import AuthStack from './AuthStack'
 import AppStack from './AppStack'
+import ParentStack from './ParentStack'
+import KidStack from './KidStack'
 import { signIn } from '../redux/index';
 import { connect } from 'react-redux'
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -35,8 +37,10 @@ export default function _AppNavigation(props) {
         <NavigationContainer>
             {
                 loggedIn ? (
-                    <Drawer.Navigator initialRouteName="App">
-                        <Drawer.Screen name="App" component={AppStack} />
+                    <Drawer.Navigator initialRouteName="Home">
+                        <Drawer.Screen name="Home" component={AppStack} />
+                        <Drawer.Screen name="Parent Zone" component={ParentStack} />
+                        <Drawer.Screen name="Kids Zone" component={KidStack} />
                     </Drawer.Navigator>
                 ) : (
                     <AuthStack />

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Dimensions, ImageBackground, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { connect } from 'react-redux'
 import { signOut } from '../redux/index';
@@ -13,68 +13,67 @@ export default class _Home extends React.Component {
 
         return (
             <View style={styles.container}>
-                <LinearGradient
+                {/* <LinearGradient
                     // Background Linear Gradient
                     colors={['rgba(46, 204, 113,1.0)', 'rgba(52, 152, 219,1.0)']}
                     style={styles.background}
-                />
+                /> */}
 
-                <View style={{
-                    alignItems: 'center',
-                    marginBottom: 30
+                <ImageBackground source={require('../assets/images/HomeScreen/BG.png')} style={{
+                    flex: 1,
+                    resizeMode: "cover",
+                    justifyContent: "center",
+                    alignItems: "center"
                 }}>
-                    <TouchableOpacity style={{
-                        backgroundColor: '#a29bfe',
-                        width: 150,
-                        height: 150,
-                        borderRadius: 100,
-                        marginBottom: 20
-                    }}
-                        onPress={() => {
-                            this.props.navigation.navigate('Kids Home')
+                    <View style={{
+                        height: Dimensions.get('screen').height / 2
+                    }}>
+                        <TouchableOpacity onPress={() => {
+                            this.props.navigation.navigate('Kids Zone')
+                        }}>
+                            <Image
+                                source={require('../assets/images/HomeScreen/Kids.png')}
+                                style={{
+                                    width: Dimensions.get('screen').width / 1.3,
+                                    height: 230
+                                }}
+                            />
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={{
+
+                    }}>
+                        <TouchableOpacity onPress={() => {
+                            this.props.navigation.navigate('Parent Zone')
+                        }}>
+                            <Image
+                                source={require('../assets/images/HomeScreen/Parent.png')}
+                                style={{
+                                    width: Dimensions.get('screen').width / 1.3,
+                                    height: 230
+                                }}
+                            />
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={{
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}>
+                        <TouchableOpacity style={{
+                            paddingVertical: 10,
+                            paddingHorizontal: 50,
+                            backgroundColor: 'white',
+                            borderRadius: 25
                         }}
-                    >
-
-                    </TouchableOpacity>
-                    <Text style={styles.gender}>Kids Zone</Text>
-                </View>
-
-                <View style={{
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}>
-                    <TouchableOpacity style={{
-                        backgroundColor: '#a29bfe',
-                        width: 150,
-                        height: 150,
-                        borderRadius: 100,
-                        marginBottom: 20
-                    }}
-                        onPress={() => {
-                            this.props.navigation.navigate('Parent Home')
-                        }}
-                    >
-
-                    </TouchableOpacity>
-                    <Text style={styles.gender}>PARENTS ZONE</Text>
-                </View>
-
-                <View style={{
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
-                    <TouchableOpacity style={{
-                        paddingVertical: 10,
-                        paddingHorizontal: 50,
-                        backgroundColor: 'white',
-                        borderRadius: 25
-                    }}
-                        onPress={() => signOut()}
-                    >
-                        <Text>Sign out</Text>
-                    </TouchableOpacity>
-                </View>
-                <StatusBar style="auto" />
+                            onPress={() => signOut()}
+                        >
+                            <Text>Sign out</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <StatusBar style="auto" />
+                </ImageBackground>
             </View>
         );
     }
@@ -92,10 +91,8 @@ export { Home };
 
 const styles = StyleSheet.create({
     container: {
-        flexGrow: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'space-around',
+        flex: 1,
+        flexDirection: "column"
     },
 
     background: {
