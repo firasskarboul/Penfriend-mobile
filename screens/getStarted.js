@@ -1,28 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Dimensions, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import LottieView from 'lottie-react-native';
 
 export default class GetStarted extends React.Component {
-    componentDidMount() {
-        this.animation.play();
-        // Or set a specific startFrame and endFrame with:
-        // this.animation.play(30, 120);
-    }
+    // componentDidMount() {
+    //     this.animation.play();
+    //     // Or set a specific startFrame and endFrame with:
+    //     // this.animation.play(30, 120);
+    // }
 
-    resetAnimation = () => {
-        this.animation.reset();
-        this.animation.play();
-    };
+    // resetAnimation = () => {
+    //     this.animation.reset();
+    //     this.animation.play();
+    // };
 
     render() {
         return (
             <View style={styles.container}>
                 <LinearGradient
                     // Background Linear Gradient
-                    colors={['rgba(46, 204, 113,1.0)', 'rgba(52, 152, 219,1.0)']}
+                    colors={['#FC4FFF', '#00FFB3', '#6BFF2B', '#FFFF00']}
                     style={styles.background}
+                    start={{ x: 0.0, y: 0.02 }} end={{ x: 0.5, y: 1.7 }}
+                    locations={[0, 0.5, 0.6, 1]}
                 />
 
                 <View style={{
@@ -30,7 +32,7 @@ export default class GetStarted extends React.Component {
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}>
-                    <LottieView
+                    {/* <LottieView
                         ref={animation => {
                             this.animation = animation;
                         }}
@@ -41,6 +43,9 @@ export default class GetStarted extends React.Component {
                         source={require('../assets/lottie_animations/chatting-animation.json')}
                     // OR find more Lottie files @ https://lottiefiles.com/featured
                     // Just click the one you like, place that file in the 'assets' folder to the left, and replace the above 'require' statement
+                    /> */}
+                    <Image 
+                        source={require('../assets/images/getStarted/earth.png')}
                     />
                 </View>
                 <View style={{
@@ -53,7 +58,7 @@ export default class GetStarted extends React.Component {
                     >
                         <LinearGradient
                             // Button Linear Gradient
-                            colors={['#ab84ba', '#a570ba', '#9b59b6']}
+                            colors={['#FF00F0', '#FF00F0']}
                             style={styles.buttonSignin}
                         >
                             <Text style={styles.text}>Sign in</Text>
@@ -65,7 +70,7 @@ export default class GetStarted extends React.Component {
                     >
                         <LinearGradient
                             // Button Linear Gradient
-                            colors={['#58a6db', '#3d9ad9', '#2391db']}
+                            colors={['#894DFD', '#894DFD']}
                             style={styles.buttonSignup}
                         >
                             <Text style={styles.text}>Create an account</Text>

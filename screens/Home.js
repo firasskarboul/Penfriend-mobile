@@ -13,20 +13,16 @@ export default class _Home extends React.Component {
 
         return (
             <View style={styles.container}>
-                {/* <LinearGradient
-                    // Background Linear Gradient
-                    colors={['rgba(46, 204, 113,1.0)', 'rgba(52, 152, 219,1.0)']}
-                    style={styles.background}
-                /> */}
 
                 <ImageBackground source={require('../assets/images/HomeScreen/BG.png')} style={{
                     flex: 1,
                     resizeMode: "cover",
                     justifyContent: "center",
-                    alignItems: "center"
+                    alignItems: "center",
+                    justifyContent: 'space-around'
                 }}>
                     <View style={{
-                        height: Dimensions.get('screen').height / 2
+                        // height: Dimensions.get('screen').height / 2
                     }}>
                         <TouchableOpacity onPress={() => {
                             this.props.navigation.navigate('Kids Zone')
@@ -34,13 +30,27 @@ export default class _Home extends React.Component {
                             <Image
                                 source={require('../assets/images/HomeScreen/Kids.png')}
                                 style={{
-                                    width: Dimensions.get('screen').width / 1.3,
+                                    width: Dimensions.get('screen').width / 1.25,
                                     height: 230
                                 }}
                             />
                         </TouchableOpacity>
                     </View>
-
+                    <View style={{
+                        backgroundColor: "rgba(255, 255, 255, 0.6)",
+                        borderColor: "#D94DEA",
+                        borderTopWidth: 3,
+                        borderBottomWidth: 3,
+                        alignItems: 'center',
+                        padding: 8,
+                        width: Dimensions.get('screen').width
+                    }}>
+                        <Text style={{
+                            color: '#0984e3',
+                            fontFamily: 'WTR',
+                            fontSize: 34
+                        }}>CHOOSE YOUR ZONE</Text>
+                    </View>
                     <View style={{
 
                     }}>
@@ -50,14 +60,14 @@ export default class _Home extends React.Component {
                             <Image
                                 source={require('../assets/images/HomeScreen/Parent.png')}
                                 style={{
-                                    width: Dimensions.get('screen').width / 1.3,
+                                    width: Dimensions.get('screen').width / 1.25,
                                     height: 230
                                 }}
                             />
                         </TouchableOpacity>
                     </View>
 
-                    <View style={{
+                    {/* <View style={{
                         alignItems: 'center',
                         justifyContent: 'center'
                     }}>
@@ -71,7 +81,7 @@ export default class _Home extends React.Component {
                         >
                             <Text>Sign out</Text>
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
                     <StatusBar style="auto" />
                 </ImageBackground>
             </View>
@@ -92,7 +102,7 @@ export { Home };
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: "column"
+        flexDirection: "column",
     },
 
     background: {

@@ -32,8 +32,10 @@ class _SignIn extends React.Component {
             <View style={styles.container}>
                 <LinearGradient
                     // Background Linear Gradient
-                    colors={['rgba(130,182,255, 0.9)', 'rgba(132,255,159,0.9)']}
+                    colors={['#FC4FFF', '#00FFB3', '#6BFF2B', '#FFFF00']}
                     style={styles.background}
+                    start={{ x: 0.0, y: 0.02 }} end={{ x: 0.5, y: 1.7 }}
+                    locations={[0, 0.5, 0.6, 1]}
                 />
 
                 {/* <View style={styles.animationView}>
