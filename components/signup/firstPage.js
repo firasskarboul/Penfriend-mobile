@@ -28,8 +28,10 @@ const _FirstPage = (props) => {
     >
       <LinearGradient
         // Background Linear Gradient
-        colors={['rgba(130,182,255, 0.9)', 'rgba(248, 165, 194,1.0)']}
+        colors={['#00FFB3', '#6BFF2B', '#FFFF00']}
         style={styles.background}
+        start={{ x: 0.0, y: 0.02 }} end={{ x: 0.5, y: 1.7 }}
+        locations={[0, 0.4, 0.9]}
       />
       <View style={{
         flexGrow: 1,
@@ -55,7 +57,7 @@ const _FirstPage = (props) => {
             PERSONAL_INFOS(signUpForm)
           }}
           placeholder='First Name'
-          placeholderTextColor='rgba(236, 240, 241,0.5)'
+          placeholderTextColor='rgba(0, 0, 0,0.3)'
         />
 
         <TextInput
@@ -65,7 +67,7 @@ const _FirstPage = (props) => {
             PERSONAL_INFOS(signUpForm)
           }}
           placeholder='Last Name'
-          placeholderTextColor='rgba(236, 240, 241,0.5)'
+          placeholderTextColor='rgba(0, 0, 0,0.3)'
         />
 
         <TextInput
@@ -75,7 +77,7 @@ const _FirstPage = (props) => {
             PERSONAL_INFOS(signUpForm)
           }}
           placeholder='Nationality'
-          placeholderTextColor='rgba(236, 240, 241,0.5)'
+          placeholderTextColor='rgba(0, 0, 0,0.3)'
         />
 
         <TextInput
@@ -85,7 +87,7 @@ const _FirstPage = (props) => {
             PERSONAL_INFOS(signUpForm)
           }}
           placeholder='Phone Number'
-          placeholderTextColor='rgba(236, 240, 241,0.5)'
+          placeholderTextColor='rgba(0, 0, 0,0.3)'
           keyboardType={Platform.OS == 'ios' ? 'phone-pad' : 'numeric'}
         />
 
@@ -96,7 +98,7 @@ const _FirstPage = (props) => {
             PERSONAL_INFOS(signUpForm)
           }}
           placeholder='Email'
-          placeholderTextColor='rgba(236, 240, 241,0.5)'
+          placeholderTextColor='rgba(0, 0, 0,0.3)'
           keyboardType='email-address'
         />
 
@@ -107,7 +109,7 @@ const _FirstPage = (props) => {
             PERSONAL_INFOS(signUpForm)
           }}
           placeholder='Password'
-          placeholderTextColor='rgba(236, 240, 241,0.5)'
+          placeholderTextColor='rgba(0, 0, 0,0.3)'
           secureTextEntry
         />
       </KeyboardAvoidingView>
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
     height: 40,
     color: 'white',
     width: Dimensions.get('window').width - 80,
-    borderColor: 'white',
+    borderColor: 'black',
     borderWidth: 1,
     paddingLeft: 14,
     borderRadius: 25,
@@ -149,7 +151,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     textAlign: 'center',
     fontFamily: 'WTR',
-    color: '#81ecec',
+    color: 'black',
     letterSpacing: 3
   },
 })

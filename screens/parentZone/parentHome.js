@@ -1,15 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, Image, TouchableOpacity, View, Dimensions, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { StyleSheet, ImageBackground, Text, Image, TouchableOpacity, View, Dimensions, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import LottieView from 'lottie-react-native'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import { ScrollView } from 'react-native-gesture-handler';
 
-const Item = ({ title }) => (
+const Item = ({ user }) => (
     <TouchableOpacity
         style={styles.item}
-        onPress={() => { alert(title) }}
+        onPress={() => { alert(user.email) }}
     >
         <View
             style={{
@@ -19,15 +19,32 @@ const Item = ({ title }) => (
                 backgroundColor: '#fff'
             }}
         >
-            <Image source={require('../../assets/images/father_avatar.png')} style={{ width: 120, height: 120, borderRadius: 100 }} />
+            {
+                user.id == 1 ?
+                    <Image source={require('../../assets/images/kids/boy2.jpg')} style={{ width: 120, height: 120, borderRadius: 100 }} />
+                    : (user.id == 2) ?
+                        <Image source={require('../../assets/images/kids/boy1.jpeg')} style={{ width: 120, height: 120, borderRadius: 100 }} />
+                        : (user.id == 3) ?
+                            <Image source={require('../../assets/images/kids/daugther.jpg')} style={{ width: 120, height: 120, borderRadius: 100 }} />
+                            :
+                            <Image source={require('../../assets/images/kids/girl2.jpeg')} style={{ width: 120, height: 120, borderRadius: 100 }} />
+
+            }
         </View>
 
         <View style={styles.item}>
-            <Text style={styles.title}>Firass</Text>
+            <Text style={styles.title}>{user.firstName} {user.lastName}</Text>
         </View>
 
     </TouchableOpacity>
 );
+
+const data = [
+    { id: 1, firstName: 'Firas', lastName: 'Karboul', avatar: '../../assets/images/kids/boy2.jpg', email: 'fkarboul@gmail.com' },
+    { id: 2, firstName: 'Selim', lastName: 'Mahjoub', avatar: '../../assets/images/kids/boy1.jpeg', email: 'smahjoub@gmail.com' },
+    { id: 3, firstName: 'Ameni', lastName: 'Trabelsi', avatar: '../../assets/images/kids/daugther.jpg', email: 'hrebaii@gmail.com' },
+    { id: 4, firstName: 'Ahlem', lastName: 'Khelifa', avatar: '../../assets/images/kids/girl2.jpeg', email: 'arezigg@gmail.com' }
+]
 
 export default class _ParentHome extends React.Component {
 
@@ -48,9 +65,9 @@ export default class _ParentHome extends React.Component {
 
     githubGetUrl = async () => {
         this.setState({ isLoading: true })
-        await axios.get('https://jsonplaceholder.typicode.com/todos')
+        await axios.get('https://reqres.in/api/users')
             .then((response) => {
-                this.setState({ data: response.data })
+                this.setState({ data: response.data.data })
             })
             .catch(function (error) {
                 // handle error
@@ -61,49 +78,72 @@ export default class _ParentHome extends React.Component {
 
     render() {
 
-        const renderItem = ({ item }) => item.userId == 1 ? <Item title={item.title} /> : null;
+        const renderItem = ({ item }) => <Item user={item} />
+        const image = require('../../assets/images/parentZone/BG02.png');
 
         return (
             <View style={styles.container}>
-                <LinearGradient
-                    // Background Linear Gradient
-                    colors={['rgba(46, 204, 113,1.0)', 'rgba(52, 152, 219,1.0)']}
-                    style={styles.background}
-                />
-
-                <SafeAreaView style={{
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
-                    {
-                        this.state.isLoading
-                            ?
-                            <ActivityIndicator size="small" color="#0000ff" />
-                            :
-                            <FlatList
-                                data={this.state.data}
-                                renderItem={renderItem}
-                                keyExtractor={item => item.id}
-                                numColumns={2}
-                                showsHorizontalScrollIndicator={false}
-                                showsVerticalScrollIndicator={false}
-                            />
-                    }
-                    <TouchableOpacity style={{
-                        width: 100,
-                        height: 100,
+                <ImageBackground source={image} style={styles.bgImage}>
+                    <SafeAreaView style={{
                         alignItems: 'center',
                         justifyContent: 'center'
-                    }} onPress={() => alert('added!')}>
-                        <LottieView
-                            source={require('../../assets/lottie_animations/add.json')}
-                            autoPlay
-                            loop
+                    }}>
+                        <Image source={require('../../assets/images/parentZone/mapMonde.png')}
+                            style={{
+                                width: 900,
+                                height: 600,
+                                position: 'absolute',
+                                shadowOpacity: 0.4,
+                                opacity: 0.4,
+                                tintColor: '#fff'
+                            }}
                         />
-                    </TouchableOpacity>
-                </SafeAreaView>
+                        <View style={{
+                            margin: 50,
+                        }}>
+                            <Text style={{
+                                fontFamily: 'Sandy',
+                                fontSize: 60,
+                                color: 'yellow',
+                                textAlign: 'center',
+                                paddingLeft: 50,
+                                paddingRight: 50,
+                                shadowColor: '#7F5DF0',
+                                shadowOffset: {
+                                    width: 0,
+                                    height: 10
+                                },
+                                shadowOpacity: 0.25,
+                                shadowRadius: 3.5,
+                                elevation: 5
+                            }}>PARENT ZONE</Text>
+                        </View>
+                        {
+                            this.state.isLoading
+                                ?
+                                <View style={{
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
+                                    <ActivityIndicator size="small" color="#0000ff" />
+                                </View>
+                                :
+                                <ScrollView style={{ flex: 1 }}
+                                    showsVerticalScrollIndicator={false}
+                                >
+                                    <FlatList
+                                        // data={this.state.data}
+                                        data={data}
+                                        renderItem={renderItem}
+                                        keyExtractor={item => item.id}
+                                        numColumns={2}
+                                    />
+                                </ScrollView>
+                        }
+                    </SafeAreaView>
 
-                <StatusBar style="auto" />
+                    <StatusBar style="auto" />
+                </ImageBackground>
             </View>
         );
     }
@@ -127,26 +167,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
 
+    bgImage: {
+        flexGrow: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center',
+    },
+
     background: {
         position: 'absolute',
         left: 0,
         right: 0,
         top: 0,
         height: Dimensions.get('window').height
-    },
-
-    buttonSignin: {
-        padding: 15,
-        paddingHorizontal: 61,
-        marginBottom: 25,
-        alignItems: 'center',
-        borderRadius: 25,
-    },
-
-    buttonSignup: {
-        alignItems: 'center',
-        borderRadius: 25,
-        padding: 15,
     },
 
     text: {
@@ -156,23 +188,23 @@ const styles = StyleSheet.create({
     },
 
     item: {
-
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 25,
-        shadowColor: "#000",
+        margin: 20,
+        shadowColor: "#fff",
         shadowOffset: {
             width: 0,
-            height: 3,
+            height: 5,
         },
-        shadowOpacity: 0.29,
+        shadowOpacity: 0.4,
         shadowRadius: 4.65,
 
         elevation: 7,
     },
 
     title: {
-        fontSize: 20,
-        color: 'white'
+        fontSize: 22,
+        color: 'black',
+        fontFamily: 'WTR'
     },
 });

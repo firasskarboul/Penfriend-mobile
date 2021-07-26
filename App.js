@@ -10,6 +10,7 @@ export default function App() {
 
   let [fontsLoaded] = useFonts({
     'WTR': require("./assets/fonts/WhaleTriedRegular.ttf"),
+    'Sandy': require("./assets/fonts/SandyKidsRegular.ttf"),
   });
 
   if (!fontsLoaded) {

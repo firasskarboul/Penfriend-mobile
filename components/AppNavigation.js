@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import AuthStack from './AuthStack'
 import AppStack from './AppStack'
-import ParentStack from './ParentStack'
+import Tabs from './TabNavigation'
 import KidStack from './KidStack'
 import { signIn } from '../redux/index';
 import { connect } from 'react-redux'
@@ -39,7 +39,7 @@ export default function _AppNavigation(props) {
                 loggedIn ? (
                     <Drawer.Navigator initialRouteName="Home">
                         <Drawer.Screen name="Home" component={AppStack} />
-                        <Drawer.Screen name="Parent Zone" component={ParentStack} />
+                        <Drawer.Screen name="Parent Zone" component={Tabs} />
                         <Drawer.Screen name="Kids Zone" component={KidStack} />
                     </Drawer.Navigator>
                 ) : (

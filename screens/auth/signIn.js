@@ -103,13 +103,24 @@ class _SignIn extends React.Component {
                                 backgroundColor: '#edff8f',
                                 borderRadius: 25,
                             }}
-                            onPress={() => signIn({ email: this.state.email, password: this.state.password })}
+                            onPress={() => {
+                                (this.state.email == '' && this.state.password == '')
+                                    ?
+                                    alert('Please write your email and password!')
+                                    :
+                                    (this.state.email == '' ) ?
+                                    alert('Please write your email!')
+                                    :
+                                    (this.state.password == '') ?
+                                    alert('Please write your password!'):
+                                    signIn({ email: this.state.email, password: this.state.password })
+                            }}
                         >
 
                             {
                                 loading
                                     ?
-                                    <ActivityIndicator size="small" color="#0000ff" />
+                                    <ActivityIndicator size="small" color="black" />
                                     :
                                     <Text>Sign In</Text>
                             }
@@ -130,7 +141,7 @@ class _SignIn extends React.Component {
                                     borderRadius: 25,
                                     marginTop: 10
                                 }}
-                            // onPress={() => this.navigation.navigate('')} navigation to signup
+                            // onPress={() => {props.navigation.navigate('SignUp')}}
                             >
                                 <Text style={{ color: 'white' }}>Sign Up</Text>
                             </TouchableOpacity>

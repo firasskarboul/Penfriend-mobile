@@ -3,12 +3,13 @@ import { StyleSheet, View, Text, Dimensions, Image } from 'react-native'
 import * as ImagePicker from 'expo-image-picker';
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { connect } from 'react-redux'
+import { LinearGradient } from 'expo-linear-gradient';
 
 const _FifthPage = (props) => {
 
   const [parentImage, setParentImage] = useState(null);
 
-  const family_avatar = require('../../assets/images/father_avatar.png')
+  const family_avatar = require('../../assets/images/getStarted/signup/parents.png')
 
   const { PARENT_IMAGE } = props
 
@@ -41,6 +42,13 @@ const _FifthPage = (props) => {
 
   return (
     <View style={styles.container}>
+      <LinearGradient
+        // Background Linear Gradient
+        colors={['#FC4FFF', '#00FFB3', '#6BFF2B', '#FFFF00']}
+        style={styles.background}
+        start={{ x: 0.0, y: 0.02 }} end={{ x: 0.5, y: 1.7 }}
+        locations={[0, 0.5, 0.6, 1]}
+      />
       <View style={{
         justifyContent: 'center',
         alignItems: 'center'
@@ -53,7 +61,7 @@ const _FifthPage = (props) => {
         alignItems: 'center'
       }} onPress={pickImage}>
         <Image source={parentImage !== null ? { uri: parentImage } : family_avatar} style={{ width: 200, height: 200, borderRadius: 100, marginTop: 100 }} />
-        <Text style={{ textAlign: 'center', color: 'yellow', margin: 50 }}>Select a real photo containing your face</Text>
+        <Text style={{ textAlign: 'center', color: '#894DFD', margin: 50, fontSize: 28 }}>Select a real photo {"\n"}containing your face</Text>
       </TouchableOpacity>
 
     </View>
@@ -72,8 +80,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#07689f'
+    justifyContent: 'center'
   },
 
   inputText: {
@@ -94,6 +101,14 @@ const styles = StyleSheet.create({
     letterSpacing: 3
   },
 
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: Dimensions.get('window').height
+  },
+
   item: {
     backgroundColor: '#f9c2ff',
     padding: 20,
@@ -108,4 +123,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export {FifthPage};
+export { FifthPage };

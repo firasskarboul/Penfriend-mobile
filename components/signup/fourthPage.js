@@ -3,12 +3,13 @@ import { StyleSheet, View, Text, Dimensions, Image } from 'react-native'
 import * as ImagePicker from 'expo-image-picker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux'
+import { LinearGradient } from 'expo-linear-gradient';
 
 const _FourthPage = (props) => {
 
   const [familyImage, setFamilyImage] = useState(null);
 
-  const family_avatar = require('../../assets/images/family_avatar.png')
+  const family_avatar = require('../../assets/images/getStarted/signup/family.png')
 
   const { FAMILY_IMAGE } = props
 
@@ -32,7 +33,7 @@ const _FourthPage = (props) => {
       aspect: [4, 3],
       quality: 1,
     });
-    
+
     if (!result.cancelled) {
       setFamilyImage(result.uri)
       FAMILY_IMAGE(result.uri)
@@ -41,6 +42,13 @@ const _FourthPage = (props) => {
 
   return (
     <View style={styles.container}>
+      <LinearGradient
+        // Background Linear Gradient
+        colors={['#FC4FFF', '#00FFB3', '#6BFF2B', '#FFFF00']}
+        style={styles.background}
+        start={{ x: 0.0, y: 0.02 }} end={{ x: 0.5, y: 1.7 }}
+        locations={[0, 0.5, 0.6, 1]}
+      />
       <View style={{
         justifyContent: 'center',
         alignItems: 'center'
@@ -70,8 +78,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#07689f'
+    justifyContent: 'center'
   },
 
   inputText: {
@@ -82,6 +89,14 @@ const styles = StyleSheet.create({
     paddingLeft: 14,
     borderRadius: 25,
     marginBottom: 15
+  },
+
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: Dimensions.get('window').height
   },
 
   title: {

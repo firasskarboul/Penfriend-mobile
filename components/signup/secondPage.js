@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, Dimensions, Image } from 'react-native'
 import { connect } from 'react-redux'
+import { LinearGradient } from 'expo-linear-gradient';
 
 const _SecondPage = (props) => {
 
@@ -13,10 +14,16 @@ const _SecondPage = (props) => {
       style={{
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#07689f'
+        alignItems: 'center'
       }}
     >
+      <LinearGradient
+        // Background Linear Gradient
+        colors={['#FC4FFF', '#00FFB3', '#6BFF2B', '#FFFF00']}
+        style={styles.background}
+        start={{ x: 0.0, y: 0.02 }} end={{ x: 0.5, y: 1.7 }}
+        locations={[0, 0.5, 0.6, 1]}
+      />
       <View style={styles.container}>
         <Text style={styles.title}>Gender</Text>
       </View>
@@ -28,7 +35,6 @@ const _SecondPage = (props) => {
           marginBottom: 30
         }}>
           <TouchableOpacity style={{
-            backgroundColor: selected == 'female' ? '#a29bfe' : '#dfe6e9',
             width: 150,
             height: 150,
             borderRadius: 100,
@@ -39,7 +45,12 @@ const _SecondPage = (props) => {
               GENDER('female')
             }}
           >
-
+            {selected == 'female'
+              ?
+              <Image source={require('../../assets/images/getStarted/signup/mother_selected.png')} />
+              :
+              <Image source={require('../../assets/images/getStarted/signup/mother.png')} />
+            }
           </TouchableOpacity>
           <Text style={styles.gender}>MOTHER</Text>
         </View>
@@ -49,7 +60,6 @@ const _SecondPage = (props) => {
           justifyContent: 'center',
         }}>
           <TouchableOpacity style={{
-            backgroundColor: selected == 'male' ? '#a29bfe' : '#dfe6e9',
             width: 150,
             height: 150,
             borderRadius: 100,
@@ -60,7 +70,11 @@ const _SecondPage = (props) => {
               GENDER('male')
             }}
           >
-
+            {selected == 'male' ?
+              <Image source={require('../../assets/images/getStarted/signup/father_selected.png')} />
+              :
+              <Image source={require('../../assets/images/getStarted/signup/father.png')} />
+            }
           </TouchableOpacity>
           <Text style={styles.gender}>FATHER</Text>
         </View>
@@ -73,7 +87,7 @@ const _SecondPage = (props) => {
 
 const mapDispatchToProps = (dispatch) => ({
   GENDER: (gender) => {
-    dispatch({type: 'GENDER', gender: gender})
+    dispatch({ type: 'GENDER', gender: gender })
   }
 })
 
@@ -96,6 +110,14 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
 
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: Dimensions.get('window').height
+  },
+
   title: {
     fontSize: 60,
     textAlign: 'center',
@@ -107,7 +129,7 @@ const styles = StyleSheet.create({
   gender: {
     fontSize: 30,
     fontFamily: 'WTR',
-    color: '#dfe6e9',
+    color: '#894DFD',
     letterSpacing: 3
   }
 })

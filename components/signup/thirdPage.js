@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { StyleSheet, View, Text, Platform, Button, Dimensions } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { connect } from 'react-redux'
+import { LinearGradient } from 'expo-linear-gradient';
 
 const _ThirdPage = (props) => {
 
@@ -13,13 +14,20 @@ const _ThirdPage = (props) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
-    BIRTHDAY(currentDate.getDate() + '/' + (currentDate.getMonth()+1) + '/' + currentDate.getFullYear())
+    BIRTHDAY(currentDate.getDate() + '/' + (currentDate.getMonth() + 1) + '/' + currentDate.getFullYear())
   };
 
   const { BIRTHDAY } = props
 
   return (
     <View style={styles.container}>
+      <LinearGradient
+        // Background Linear Gradient
+        colors={['#FC4FFF', '#00FFB3', '#6BFF2B', '#FFFF00']}
+        style={styles.background}
+        start={{ x: 0.0, y: 0.02 }} end={{ x: 0.5, y: 1.7 }}
+        locations={[0, 0.5, 0.6, 1]}
+      />
       <View style={{
         flexGrow: 1,
         justifyContent: 'center',
@@ -43,7 +51,7 @@ const _ThirdPage = (props) => {
           style={{
             width: Dimensions.get('window').width - 80,
           }}
-          textColor='white'
+          textColor='blue'
           maximumDate={new Date()}
         />
       </View>
@@ -53,7 +61,7 @@ const _ThirdPage = (props) => {
 
 const mapDispatchToProps = (dispatch) => ({
   BIRTHDAY: (date) => {
-    dispatch({type: 'BIRTHDAY', birthday: date})
+    dispatch({ type: 'BIRTHDAY', birthday: date })
   }
 })
 
@@ -63,8 +71,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#07689f'
+    justifyContent: 'center'
   },
 
   inputText: {
@@ -75,6 +82,14 @@ const styles = StyleSheet.create({
     paddingLeft: 14,
     borderRadius: 25,
     marginBottom: 15
+  },
+
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: Dimensions.get('window').height
   },
 
   title: {
@@ -93,4 +108,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export {ThirdPage};
+export { ThirdPage };

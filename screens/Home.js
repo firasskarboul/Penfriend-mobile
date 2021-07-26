@@ -31,7 +31,8 @@ export default class _Home extends React.Component {
                                 source={require('../assets/images/HomeScreen/Kids.png')}
                                 style={{
                                     width: Dimensions.get('screen').width / 1.25,
-                                    height: 230
+                                    height: 230,
+                                    marginBottom: -25
                                 }}
                             />
                         </TouchableOpacity>

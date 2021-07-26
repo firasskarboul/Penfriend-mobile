@@ -40,11 +40,11 @@ const _SignUp = (props) => {
 
     return (
         <View style={{ flex: 1 }}>
-            <ViewPager style={{ flex: 1 }} initialPage={0} ref={pagerRef}>
+            <ViewPager style={{ flex: 1 }} initialPage={0} ref={pagerRef} scrollEnabled={false}>
                 <View key="1">
                     <FirstPage />
                     <Footer
-                        backgroundColor="#2980b9"
+                        backgroundColor="#894DFD"
                         rightButtonLabel="Next"
                         rightButtonPress={() => {
                             (email == '' || firstName == '' || lastName == '' || password == '' ||
@@ -54,12 +54,16 @@ const _SignUp = (props) => {
                                 :
                                 handlePageChange(1)
                         }}
+                        leftButtonLabel="Sign in"
+                        leftButtonPress={() => {
+                            props.navigation.navigate('SignIn')
+                        }}
                     />
                 </View>
                 <View key="2">
                     <SecondPage />
                     <Footer
-                        backgroundColor="#2980b9"
+                        backgroundColor="#894DFD"
                         rightButtonLabel="Next"
                         rightButtonPress={() => {
                             handlePageChange(2)
@@ -73,7 +77,7 @@ const _SignUp = (props) => {
                 <View key="3">
                     <ThirdPage />
                     <Footer
-                        backgroundColor="#2980b9"
+                        backgroundColor="#894DFD"
                         rightButtonLabel="Next"
                         rightButtonPress={() => {
                             handlePageChange(3)
@@ -89,7 +93,7 @@ const _SignUp = (props) => {
                 <View key="5">
                     <FifthPage />
                     <Footer
-                        backgroundColor="#2980b9"
+                        backgroundColor="#894DFD"
                         rightButtonLabel="Next"
                         rightButtonPress={() => {
                             handlePageChange(4)
@@ -107,7 +111,7 @@ const _SignUp = (props) => {
                     {loading
                         ?
                         <View style={{
-                            backgroundColor: "#2980b9",
+                            backgroundColor: "#894DFD",
                             flexDirection: 'row',
                             justifyContent: 'center',
                             height: HEIGHT,
@@ -119,7 +123,7 @@ const _SignUp = (props) => {
                         </View>
                         :
                         <Footer
-                            backgroundColor="#2980b9"
+                            backgroundColor="#894DFD"
                             rightButtonLabel="Register"
                             rightButtonPress={() => {
                                 signUp({
