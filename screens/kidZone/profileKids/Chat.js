@@ -17,7 +17,56 @@ import { connect } from 'react-redux'
 import LottieView from 'lottie-react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import axios from 'axios'
-import { AntDesign, FontAwesome5 } from '@expo/vector-icons'
+import { FontAwesome, FontAwesome5 } from '@expo/vector-icons'
+
+const Item = ({ user }) => (
+    <View style={styles.item}>
+        {
+            user.id == 1 ?
+                <Image source={require('../../../assets/images/kids/boy2.jpg')} style={{ width: 75, height: 75, borderRadius: 100, marginRight: 15 }} />
+                : (user.id == 2) ?
+                    <Image source={require('../../../assets/images/kids/boy1.jpeg')} style={{ width: 75, height: 75, borderRadius: 100, marginRight: 15 }} />
+                    : (user.id == 3) ?
+                        <Image source={require('../../../assets/images/kids/daugther.jpg')} style={{ width: 75, height: 75, borderRadius: 100, marginRight: 15 }} />
+                        :
+                        <Image source={require('../../../assets/images/kids/girl2.jpeg')} style={{ width: 75, height: 75, borderRadius: 100, marginRight: 15 }} />
+        }
+        <View style={{ marginRight: Dimensions.get('screen').width / 7.3 }}>
+            <Text style={styles.title}>{
+                ((user.firstName + ' ' + user.lastName).length >= 15) ?
+                    (((user.firstName + ' ' + user.lastName).substring(0, 15 - 3)) + '...') :
+                    user.firstName + ' ' + user.lastName}
+            </Text>
+        </View>
+        <TouchableOpacity
+            onPress={() => alert('added!')}
+            style={{
+                backgroundColor: '#2ecc71',
+                height: 40,
+                width: 40,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 80,
+                padding: 8,
+                marginRight: 9
+            }}>
+            <FontAwesome5 name="phone" size={20} color="#fff" />
+        </TouchableOpacity>
+        <TouchableOpacity
+            onPress={() => alert('added!')}
+            style={{
+                backgroundColor: '#FFFF00',
+                height: 40,
+                width: 40,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 80,
+                padding: 8
+            }}>
+            <FontAwesome name="video-camera" size={20} color="#000" />
+        </TouchableOpacity>
+    </View>
+);
 
 export default class _Chat extends React.Component {
 
@@ -25,68 +74,54 @@ export default class _Chat extends React.Component {
         super(props);
         this.animation = React.createRef(null);
         this.state = {
-            posts: [
-                { id: "1", postOwner: 3, firstName: 'Ahlem', lastName: 'Trabelsi', avatar: '../../assets/images/kids/daugther.jpg', postPhoto: '../../assets/images/EXAMPLES/1.jpg', isLiked: false },
-                { id: "2", postOwner: 5, firstName: 'Hamza', lastName: 'Rebaii', avatar: '../../assets/images/kids/girl2.jpeg', postPhoto: '../../assets/images/EXAMPLES/2.jpg', isLiked: true },
-                { id: "3", postOwner: 1, firstName: 'Firas', lastName: 'Karboul', avatar: '../../assets/images/kids/boy2.jpg', postPhoto: '../../assets/images/EXAMPLES/3.jpg', isLiked: false },
-                { id: "4", postOwner: 7, firstName: 'Amine', lastName: 'Jaidii', avatar: '../../assets/images/kids/daugther.jpeg', postPhoto: '../../assets/images/EXAMPLES/4.jpg', isLiked: false },
-                { id: "5", postOwner: 2, firstName: 'Selim', lastName: 'Mahjoub', avatar: '../../assets/images/kids/boy1.jpeg', postPhoto: '../../assets/images/EXAMPLES/5.jpg', isLiked: true }
+            users: [
+                { id: 1, firstName: 'Firas', lastName: 'Karbouuuuuul', avatar: '../../../assets/images/kids/boy2.jpg', email: 'fkarboul@gmail.com' },
+                { id: 2, firstName: 'Selim', lastName: 'Mahjoub', avatar: '../../../assets/images/kids/boy1.jpeg', email: 'smahjoub@gmail.com' },
+                { id: 3, firstName: 'Ahlem', lastName: 'Trabelsi', avatar: '../../../assets/images/kids/daugther.jpg', email: 'hrebaii@gmail.com' },
+                { id: 4, firstName: 'Sirin', lastName: 'Khelifa', avatar: '../../../assets/images/kids/girl2.jpeg', email: 'arezigg@gmail.com' },
+                { id: 5, firstName: 'Hamza', lastName: 'Rebaii', avatar: '../../../assets/images/kids/boy2.jpeg', email: 'arezigg@gmail.com' },
+                { id: 6, firstName: 'Aymen', lastName: 'Rezigg', avatar: '../../../assets/images/kids/boy1.jpeg', email: 'arezigg@gmail.com' },
+                { id: 7, firstName: 'Hamadi', lastName: 'Jaidii', avatar: '../../../assets/images/kids/daugther.jpeg', email: 'arezigg@gmail.com' },
+                { id: 8, firstName: 'Saief', lastName: 'Karboul', avatar: '../../../assets/images/kids/girl2.jpeg', email: 'arezigg@gmail.com' },
+                { id: 9, firstName: 'Ameni', lastName: 'Khelifa', avatar: '../../../assets/images/kids/boy1.jpeg', email: 'arezigg@gmail.com' }
             ]
         };
     }
 
     render() {
-        // const renderItem = ({ item }) => (
-        //     <Post
-        //         // user={item}
-        //         {...item}
-        //         onLikePost={(id) => {
-        //             let newArr = this.state.posts.map(post =>
-        //                 post.id === item.id ?
-        //                     { ...post, isLiked: !post.isLiked }
-        //                     :
-        //                     post
-        //             )
-        //             this.setState({
-        //                 posts: newArr
-        //             })
-        //         }
+        const renderItem = ({ item }) => (
+            <Item user={item} />
+        )
 
-        //         }
-        //     />
-        // )
-
-        const image = require('../../../assets/images/BGs/BG09/BG09.png');
+        const image = require('../../../assets/images/BGs/BG08/BG08.png');
         return (
             <View style={styles.container}>
-                {/* <ImageBackground source={image} style={styles.background}> */}
-                <LinearGradient
-                    // Background Linear Gradient
-                    colors={['#067ffc', '#0d0cfa', '#ba01b0', '#c60064', '#af0096']}
-                    style={styles.background}
-                />
+                <ImageBackground source={image} style={styles.background}>
                 <Image source={require('../../../assets/images/parentZone/mapMonde.png')}
                     style={{
                         width: 400,
                         height: 600,
                         position: 'absolute',
-                        shadowOpacity: 0.4,
+                        shadowOpacity: 0.2,
                         top: 110,
-                        opacity: 0.4,
+                        opacity: 0.16,
                         tintColor: 'blue'
                     }}
                 />
                 <SafeAreaView style={styles.SafeAreaViewContainer}>
-                    {/* <FlatList
-                        // data={this.state.data}
-                        data={this.state.posts}
+                    <FlatList
+                        data={this.state.users}
                         renderItem={renderItem}
                         keyExtractor={item => item.id}
                         showsVerticalScrollIndicator={false}
-                    /> */}
+                        vertical
+                        ItemSeparatorComponent={() => <View style={{
+                            height: 0.5, width: "90%", alignSelf:'center', backgroundColor: "#fff"
+                        }} />}
+                    />
                 </SafeAreaView>
                 <StatusBar style="auto" />
-                {/* </ImageBackground> */}
+                </ImageBackground>
             </View>
         );
     }
@@ -110,17 +145,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
 
-    searchTextInput: {
-        width: Dimensions.get('screen').width / 1.5,
-        borderColor: '#ecf0f1',
-        borderWidth: 1,
-        padding: 10,
-        borderRadius: 20,
-        marginTop: 15,
-        marginRight: 20,
-        color: '#ecf0f1'
-    },
-
     lottieHeart: {
         width: 90,
         height: 90,
@@ -129,14 +153,16 @@ const styles = StyleSheet.create({
 
     item: {
         flexGrow: 1,
-        backgroundColor: 'white',
-        height: Dimensions.get('screen').height / 2,
-        marginBottom: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        padding: 10,
+        margin: 5,
         borderRadius: 10
     },
 
     title: {
-        color: 'black',
+        color: '#2d3436',
         fontSize: 23,
         fontFamily: 'WTR',
         fontWeight: 'bold',
@@ -147,15 +173,8 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 1.0,
         shadowRadius: 18.00,
-
+        width: Dimensions.get('screen').width / 3.2,
         elevation: 24,
-    },
-
-    searchView: {
-        flexGrow: 1,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        flexDirection: 'row'
     },
 
     background: {

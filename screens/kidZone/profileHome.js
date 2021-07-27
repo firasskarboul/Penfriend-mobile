@@ -62,7 +62,7 @@ export default class _ProfileHome extends React.Component {
                 {/* <ImageBackground source={image} style={styles.background}> */}
                 <LinearGradient
                     // Background Linear Gradient
-                    colors={['#067ffc', '#0d0cfa', '#ba01b0', '#c60064', '#af0096']}
+                    colors={['#7d57c6', '#63a3f7', '#71d258', '#f1cc35', '#71d258', '#63a3f7', '#7d57c6']}
                     style={styles.background}
                 />
                 <Image source={require('../../assets/images/parentZone/mapMonde.png')}
@@ -70,10 +70,10 @@ export default class _ProfileHome extends React.Component {
                         width: 400,
                         height: 600,
                         position: 'absolute',
-                        shadowOpacity: 0.4,
+                        shadowOpacity: 0.2,
                         top: 110,
-                        opacity: 0.4,
-                        tintColor: 'blue'
+                        opacity: 0.2,
+                        tintColor: 'white'
                     }}
                 />
                 <SafeAreaView style={styles.SafeAreaViewContainer}>
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
 
     item: {
         flexGrow: 1,
-        backgroundColor: 'white',
+        // backgroundColor: 'rgba(255,255,255,0.5)',
         height: Dimensions.get('screen').height / 2,
         marginBottom: 30,
         borderRadius: 10

@@ -87,8 +87,7 @@ const data = [
     { id: 6, firstName: 'Aymen', lastName: 'Rezigg', avatar: '../../assets/images/kids/boy1.jpeg', email: 'arezigg@gmail.com' },
     { id: 7, firstName: 'Firas', lastName: 'Jaidii', avatar: '../../assets/images/kids/daugther.jpeg', email: 'arezigg@gmail.com' },
     { id: 8, firstName: 'Firas', lastName: 'Karboul', avatar: '../../assets/images/kids/girl2.jpeg', email: 'arezigg@gmail.com' },
-    { id: 9, firstName: 'Firas', lastName: 'Khelifa', avatar: '../../assets/images/kids/boy1.jpeg', email: 'arezigg@gmail.com' },
-    ,
+    { id: 9, firstName: 'Firas', lastName: 'Khelifa', avatar: '../../assets/images/kids/boy1.jpeg', email: 'arezigg@gmail.com' }
 ]
 
 export default class _Requests extends React.Component {
