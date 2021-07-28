@@ -48,7 +48,7 @@ export default class _AddPost extends React.Component {
                 {/* <ImageBackground source={image} style={styles.bgImage}> */}
                 <LinearGradient
                     // Background Linear Gradient
-                    colors={['#067ffc', '#0d0cfa', '#ba01b0', '#c60064', '#af0096']}
+                    colors={['#017c35', '#02c18c', '#0048f6', '#0048f6']}
                     style={styles.background}
                 />
                 <SafeAreaView style={styles.SafeAreaViewContainer}>
@@ -68,14 +68,19 @@ export default class _AddPost extends React.Component {
                         width: 350,
                         paddingTop: 5,
                         alignItems: 'center',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        flexDirection: 'row'
                     }}>
-                        <Text style={{
-                            fontFamily: 'Sandy',
-                            fontSize: 70,
-                            color: '#ff4757',
-                            textAlign: 'center'
-                        }}>ADD NEW POST</Text>
+                        <Text style={{ ...styles.title, color: '#FF1A1A', shadowColor: "#FF1A1A" }}>A</Text>
+                        <Text style={{ ...styles.title, color: '#FFFC1A', shadowColor: "#FFFC1A" }}>D</Text>
+                        <Text style={{ ...styles.title, color: '#47FF1A', shadowColor: "#47FF1A" }}>D </Text>
+                        <Text style={{ ...styles.title, color: '#1AFFEE', shadowColor: "#1AFFEE" }}>N</Text>
+                        <Text style={{ ...styles.title, color: '#f56801', shadowColor: "#f56801" }}>E</Text>
+                        <Text style={{ ...styles.title, color: '#1A2FFF', shadowColor: "#1A2FFF" }}>W </Text>
+                        <Text style={{ ...styles.title, color: '#A81AFF', shadowColor: "#A81AFF" }}>P</Text>
+                        <Text style={{ ...styles.title, color: '#FF1AEE', shadowColor: "#FF1AEE" }}>O</Text>
+                        <Text style={{ ...styles.title, color: '#FF1A2F', shadowColor: "#FF1A2F" }}>S</Text>
+                        <Text style={{ ...styles.title, color: '#FF8D1A', shadowColor: "#FF8D1A" }}>T</Text>
                     </View>
                     <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false} >
                         <KeyboardAvoidingView style={{
@@ -86,6 +91,67 @@ export default class _AddPost extends React.Component {
                             behavior="padding"
                             enabled
                         >
+                            <TextInput
+                                style={styles.textArea}
+                                underlineColorAndroid="transparent"
+                                placeholder="Type something"
+                                placeholderTextColor="rgba(45, 52, 54, 0.7)"
+                                numberOfLines={10}
+                                multiline={true}
+                            />
+                            <Image
+
+                                source={this.state.kidImage !== null ?
+                                    { uri: this.state.kidImage } :
+                                    require('../../../assets/images/kids/uploadImage.png')}
+                                style={{
+                                    marginTop: 8,
+                                    marginBottom: 8,
+                                    width: Dimensions.get('screen').width / 1.2,
+                                    height: Dimensions.get('screen').height / 3.4,
+                                    borderRadius: 0,
+                                    shadowColor: 'red',
+                                    shadowOffset: {
+                                        width: 0,
+                                        height: 5,
+                                    },
+                                    shadowOpacity: 0.36,
+                                    shadowRadius: 6.68,
+
+                                    elevation: 11
+                                }} />
+                            <LinearGradient
+                                // Background Linear Gradient
+                                colors={['#FFFC1A', '#1A2FFF', '#FF1AEE', '#FFFC1A']}
+                                start={{ x: -1, y: 0 }}
+                                end={{ x: 1, y: 0 }}
+                                style={{
+                                    paddingTop: 5,
+                                    paddingBottom: 5,
+                                    paddingLeft: 10,
+                                    paddingRight: 10,
+                                    borderRadius: 5,
+                                    width: Dimensions.get('screen').width / 1.1,
+                                }}
+                            >
+                                <TouchableOpacity style={{
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    height: 50,
+                                    shadowColor: 'red',
+                                    shadowOffset: {
+                                        width: 0,
+                                        height: 5,
+                                    },
+                                    shadowOpacity: 0.36,
+                                    shadowRadius: 6.68,
+
+                                    elevation: 11
+                                }} onPress={pickImage}>
+
+                                    <Text style={{ fontFamily: 'Sandy', fontSize: 30, letterSpacing: 2, color: '#fff' }}>Select Image/Video</Text>
+                                </TouchableOpacity>
+                            </LinearGradient>
 
                         </KeyboardAvoidingView>
                     </ScrollView>
@@ -114,6 +180,33 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+
+    title: {
+        fontFamily: 'Sandy',
+        fontSize: 70,
+        textAlign: 'center',
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.36,
+        shadowRadius: 6.68,
+
+        elevation: 11,
+    },
+
+    textArea: {
+        height: 150,
+        fontSize: 20,
+        width: Dimensions.get('screen').width / 1.05,
+        padding: 10,
+        justifyContent: "flex-start",
+        borderWidth: 2,
+        borderColor: 'rgba(45, 52, 54, 1)',
+        borderRadius: 15,
+        color: 'rgba(45, 52, 54, 1.0)',
+        backgroundColor: 'rgba(236, 240, 241, 0.9)'
     },
 
     background: {
