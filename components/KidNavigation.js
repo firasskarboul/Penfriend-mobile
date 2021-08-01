@@ -3,13 +3,13 @@ import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ProfileHome } from '../screens/kidZone/profileHome';
 import { AddPost } from '../screens/kidZone/profileKids/addPost';
-import { Chat } from '../screens/kidZone/profileKids/Chat';
+import ChatStack from '../components/ChatStack';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 
 const CustomTabBarAddButton = ({ children, onPress }) => (
     <TouchableOpacity onPress={onPress} style={{
-        top: -30,
         justifyContent: 'center',
         alignItems: 'center',
         ...styles.shadow
@@ -26,6 +26,14 @@ const CustomTabBarAddButton = ({ children, onPress }) => (
 );
 
 const KidsTabs = () => {
+    const getTabBarVisibility = (route) => {
+        const routeName = getFocusedRouteNameFromRoute(route)
+
+        if (routeName === 'Discussion') {
+            return false;
+        }
+        return true;
+    };
     return (
         <Tab.Navigator
             tabBarOptions={{
@@ -58,21 +66,6 @@ const KidsTabs = () => {
                     </View>
                 ),
             }} />
-            {/* <Tab.Screen name="Search" component={} options={{
-                tabBarIcon: ({ focused }) => (
-                    <View style={{ alignItems: 'center', justifyContent: 'center', top: 15 }}>
-                        <Image source={require('../assets/images/tabIcons/search2.png')}
-                            resizeMode={'contain'}
-                            style={{
-                                width: 30,
-                                height: 30,
-                                tintColor: focused ? '#0149a8' : 'rgba(19, 15, 64, 0.6)'
-                            }}
-                        />
-                        <Text style={{ color: focused ? '#0149a8' : 'rgba(19, 15, 64, 0.6)', fontSize: 12, paddingTop: 5 }}>Search</Text>
-                    </View>
-                ),
-            }} />*/}
 
             <Tab.Screen name="Add Post" component={AddPost}
                 options={{
@@ -93,22 +86,8 @@ const KidsTabs = () => {
                 }}
             />
 
-            {/*<Tab.Screen name="Friend Requests" component={} options={{
-                tabBarIcon: ({ focused }) => (
-                    <View style={{ alignItems: 'center', justifyContent: 'center', top: 15 }}>
-                        <Image source={require('../assets/images/tabIcons/demande1.png')}
-                            resizeMode={'contain'}
-                            style={{
-                                width: 30,
-                                height: 30,
-                                tintColor: focused ? '#0149a8' : 'rgba(19, 15, 64, 0.6)'
-                            }}
-                        />
-                        <Text style={{ color: focused ? null : 'rgba(19, 15, 64, 0.6)', fontSize: 12, paddingTop: 5 }}>Requests</Text>
-                    </View>
-                ),
-            }} />*/}
-            <Tab.Screen name="Chat" component={Chat} options={{
+            <Tab.Screen name="Chat" component={ChatStack} options={({ route }) => ({
+                tabBarVisible: getTabBarVisibility(route),
                 tabBarIcon: ({ focused }) => (
                     <View style={{ alignItems: 'center', justifyContent: 'center', top: 15 }}>
                         <Image source={focused ? require('../assets/images/tabIcons/chat1.png') : require('../assets/images/tabIcons/chat2.png')}
@@ -121,7 +100,7 @@ const KidsTabs = () => {
                         <Text style={{ fontSize: 12, paddingTop: 5 }}>Chat</Text>
                     </View>
                 ),
-            }} />
+            })} />
         </Tab.Navigator>
     );
 }

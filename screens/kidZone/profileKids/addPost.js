@@ -68,19 +68,12 @@ export default class _AddPost extends React.Component {
                         width: 350,
                         paddingTop: 5,
                         alignItems: 'center',
-                        justifyContent: 'center',
+                        justifyContent: 'space-around',
                         flexDirection: 'row'
                     }}>
-                        <Text style={{ ...styles.title, color: '#FF1A1A', shadowColor: "#FF1A1A" }}>A</Text>
-                        <Text style={{ ...styles.title, color: '#FFFC1A', shadowColor: "#FFFC1A" }}>D</Text>
-                        <Text style={{ ...styles.title, color: '#47FF1A', shadowColor: "#47FF1A" }}>D </Text>
-                        <Text style={{ ...styles.title, color: '#1AFFEE', shadowColor: "#1AFFEE" }}>N</Text>
-                        <Text style={{ ...styles.title, color: '#f56801', shadowColor: "#f56801" }}>E</Text>
-                        <Text style={{ ...styles.title, color: '#1A2FFF', shadowColor: "#1A2FFF" }}>W </Text>
-                        <Text style={{ ...styles.title, color: '#A81AFF', shadowColor: "#A81AFF" }}>P</Text>
-                        <Text style={{ ...styles.title, color: '#FF1AEE', shadowColor: "#FF1AEE" }}>O</Text>
-                        <Text style={{ ...styles.title, color: '#FF1A2F', shadowColor: "#FF1A2F" }}>S</Text>
-                        <Text style={{ ...styles.title, color: '#FF8D1A', shadowColor: "#FF8D1A" }}>T</Text>
+                        <Text style={{ ...styles.title, color: 'red', shadowColor: 'red' }}>ADD </Text>
+                        <Text style={{ ...styles.title, color: 'yellow', shadowColor: 'yellow' }}>NEW </Text>
+                        <Text style={{ ...styles.title, color: '#FF00FF', shadowColor: '#FF00FF' }}>POST</Text>
                     </View>
                     <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false} >
                         <KeyboardAvoidingView style={{
@@ -100,26 +93,32 @@ export default class _AddPost extends React.Component {
                                 multiline={true}
                             />
                             <Image
-
                                 source={this.state.kidImage !== null ?
                                     { uri: this.state.kidImage } :
                                     require('../../../assets/images/kids/uploadImage.png')}
-                                style={{
-                                    marginTop: 8,
-                                    marginBottom: 8,
-                                    width: Dimensions.get('screen').width / 1.2,
-                                    height: Dimensions.get('screen').height / 3.4,
-                                    borderRadius: 0,
-                                    shadowColor: 'red',
-                                    shadowOffset: {
-                                        width: 0,
-                                        height: 5,
-                                    },
-                                    shadowOpacity: 0.36,
-                                    shadowRadius: 6.68,
+                                style={this.state.kidImage !== null
+                                    ? {
+                                        marginTop: 8,
+                                        marginBottom: 8,
+                                        width: Dimensions.get('screen').width / 1.2,
+                                        height: Dimensions.get('screen').height / 3.4,
+                                        borderRadius: 0,
+                                        shadowColor: 'red',
+                                        shadowOffset: {
+                                            width: 0,
+                                            height: 5,
+                                        },
+                                        shadowOpacity: 0.36,
+                                        shadowRadius: 6.68,
 
-                                    elevation: 11
-                                }} />
+                                        elevation: 11
+                                    } : {
+                                        marginTop: 8,
+                                        marginBottom: 8,
+                                        width: 162,
+                                        height: 190,
+                                        borderRadius: 0
+                                    }} />
                             <LinearGradient
                                 // Background Linear Gradient
                                 colors={['#FFFC1A', '#1A2FFF', '#FF1AEE', '#FFFC1A']}

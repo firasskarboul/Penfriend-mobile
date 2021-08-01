@@ -56,7 +56,7 @@ const Post = ({
                     marginRight: 10
                 }} />
                 <Text style={{
-                    color: '#ecf0f1',
+                    color: '#2d3436',
                     fontFamily: 'WTR',
                     fontSize: 25,
                     fontWeight: 'bold',
@@ -117,9 +117,7 @@ const Post = ({
                         <Text style={{ color: '#2d3436', fontFamily: 'Sandy', fontSize: 25, letterSpacing: 2 }}>11 Likes</Text>
                     </View>
 
-                    <View style={{
-
-                    }}>
+                    <View>
                         <TouchableOpacity style={{
                             flexDirection: 'row',
                             justifyContent: 'center',
@@ -137,6 +135,14 @@ const Post = ({
                         </TouchableOpacity>
 
                     </View>
+                </View>
+
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Image
+                        source={require('../../../assets/images/kids/daugther.jpg')}
+                        style={{ width: 35, height: 35, borderRadius: 35, marginRight: 12, marginLeft: 20 }}
+                    />
+                    <Text>Wow, we had so much FUN </Text>
                 </View>
 
                 <View style={{

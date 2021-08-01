@@ -76,7 +76,6 @@ export default class _ProfileHome extends React.Component {
                         tintColor: 'white'
                     }}
                 />
-                <Text>posts.title</Text>
                 <SafeAreaView style={styles.SafeAreaViewContainer}>
                     <FlatList
                         // data={this.state.data}
