@@ -73,13 +73,12 @@ export default class _AddPost extends React.Component {
                     }}>
                         <Text style={{ ...styles.title, color: 'red', shadowColor: 'red' }}>ADD </Text>
                         <Text style={{ ...styles.title, color: 'yellow', shadowColor: 'yellow' }}>NEW </Text>
-                        <Text style={{ ...styles.title, color: '#FF00FF', shadowColor: '#FF00FF' }}>POST</Text>
+                        <Text style={{ ...styles.title, color: 'red', shadowColor: 'red' }}>POST</Text>
                     </View>
                     <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false} >
                         <KeyboardAvoidingView style={{
                             flexGrow: 1,
                             alignItems: 'center',
-                            justifyContent: 'center',
                         }}
                             behavior="padding"
                             enabled
@@ -87,9 +86,8 @@ export default class _AddPost extends React.Component {
                             <TextInput
                                 style={styles.textArea}
                                 underlineColorAndroid="transparent"
-                                placeholder="Type something"
-                                placeholderTextColor="rgba(45, 52, 54, 0.7)"
-                                numberOfLines={10}
+                                placeholder="Type something..."
+                                placeholderTextColor="rgba(0, 0, 0, 0.7)"
                                 multiline={true}
                             />
                             <Image
@@ -98,7 +96,7 @@ export default class _AddPost extends React.Component {
                                     require('../../../assets/images/kids/uploadImage.png')}
                                 style={this.state.kidImage !== null
                                     ? {
-                                        marginTop: 8,
+                                        marginTop: 50,
                                         marginBottom: 8,
                                         width: Dimensions.get('screen').width / 1.2,
                                         height: Dimensions.get('screen').height / 3.4,
@@ -113,7 +111,7 @@ export default class _AddPost extends React.Component {
 
                                         elevation: 11
                                     } : {
-                                        marginTop: 8,
+                                        marginTop: 60,
                                         marginBottom: 8,
                                         width: 162,
                                         height: 190,
@@ -125,6 +123,7 @@ export default class _AddPost extends React.Component {
                                 start={{ x: -1, y: 0 }}
                                 end={{ x: 1, y: 0 }}
                                 style={{
+                                    marginTop: 60,
                                     paddingTop: 5,
                                     paddingBottom: 5,
                                     paddingLeft: 10,
@@ -196,7 +195,6 @@ const styles = StyleSheet.create({
     },
 
     textArea: {
-        height: 150,
         fontSize: 20,
         width: Dimensions.get('screen').width / 1.05,
         padding: 10,
@@ -205,7 +203,6 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(45, 52, 54, 1)',
         borderRadius: 15,
         color: 'rgba(45, 52, 54, 1.0)',
-        backgroundColor: 'rgba(236, 240, 241, 0.9)'
     },
 
     background: {

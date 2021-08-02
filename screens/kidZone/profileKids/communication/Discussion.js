@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, FlatList } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from '@expo/vector-icons/AntDesign';
@@ -14,34 +14,65 @@ const Discussion = ({ route, navigation }) => {
     const [inputMessage, setMessage] = useState('');
 
     const send = () => {
-        Data.push({ id: inputMessage, message: inputMessage });
+        Data.push({ id: inputMessage, message: inputMessage, type: "sender" });
         setMessage('');
     };
 
     var txt = []
     for (var i = 5; i < Data.length; i++) {
-        txt.push(<Sent key={Data[i].id} message={Data[i].message} />);
+        txt.push(<Sent key={Data[i].id} message={Data[i].message} type={Data[i].type} />);
     }
-    console.log(Data)
 
     return (
         <LinearGradient
-            colors={["#020af8", "#4fff00", "#ebff00"]}
-            start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }}
+            colors={["#24C6DC", "#514A9D"]}
+            start={{ x: 0, y: 0.5 }} end={{ x: 0.6, y: 0.6 }}
             style={styles.container}
         >
-            <View style={styles.main}>
+            {/* <View style={styles.main}> */}
+            <LinearGradient
+                colors={["#24C6DC", "#514A9D"]}
+                start={{ x: 0, y: 0.5 }} end={{ x: 0.6, y: 0.6 }}
+                style={styles.main}
+            >
                 <View style={styles.headerContainer}>
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
                     >
-                        <Icon name='left' color='#000119' size={24} />
+                        <Icon name='left' color='#ecf0f1' size={24} />
                     </TouchableOpacity>
                     <Text style={styles.username}>{itemName}</Text>
                     <Image source={require('../../../../assets/images/kids/boy2.jpg')} style={styles.avatar} />
                 </View>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <LastWatch checkedOn='Yesterday' />
+
+                    <FlatList
+                        data={Data}
+                        style={{
+                            marginBottom: 30
+                        }}
+                        renderItem={({ item, index }) => {
+                            if (item.type === "sender") {
+                                return (
+                                    <Sent
+                                        message={item.message}
+                                    />
+                                )
+                            } else {
+                                return (
+                                    <View>
+                                        <Received
+                                            image={itemPic}
+                                            message={item.message}
+                                        />
+                                    </View>
+                                )
+                            }
+                        }}
+                        keyExtractor={(item, index) => index.toString()}
+                    />
+
+                    {/* <LastWatch checkedOn='Yesterday' />
                     <Received
                         image={itemPic}
                         message={Data[0].message}
@@ -63,9 +94,11 @@ const Discussion = ({ route, navigation }) => {
                     />
                     <View>
                         {txt}
-                    </View>
+                    </View> */}
                 </ScrollView>
-            </View>
+            </LinearGradient>
+
+            {/* </View> */}
             <Input
                 inputMessage={inputMessage}
                 setMessage={(inputMessage) => setMessage(inputMessage)}
@@ -98,7 +131,7 @@ const styles = StyleSheet.create({
         paddingBottom: 12
     },
     username: {
-        color: "#000119",
+        color: "#ecf0f1",
         // fontFamily:'Montserrat_700Bold',
         fontSize: 20,
         flex: 1,

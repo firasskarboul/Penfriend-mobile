@@ -8,7 +8,7 @@ const Received = ({image, message}) => {
           <Image source={require('../../assets/images/kids/boy1.jpeg')} style={styles.img}/>
           <View>
                <Text style={styles.message}>{message}</Text>
-               <Text style={styles.duration}>12:13 AM</Text>
+               {/* <Text style={styles.duration}>12:13 AM</Text> */}
           </View>
         </View>
     )
@@ -24,8 +24,10 @@ const styles = StyleSheet.create({
     },
     container:{
         flexDirection:'row',
-        marginTop:20,
-        width:250
+        marginTop:40,
+        marginBottom:40,
+        width:250,
+        alignItems:'center'
     },
     img:{
         width:40,
@@ -33,8 +35,9 @@ const styles = StyleSheet.create({
         borderRadius:20
     },
     message:{
-        fontSize:13,
+        fontSize:20,
         marginHorizontal:15,
+        color:"white"
         // fontFamily:'Montserrat_700Bold'
     }
 })
