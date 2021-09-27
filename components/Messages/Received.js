@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     message:{
         fontSize:20,
         marginHorizontal:15,
-        color:"white"
+        color:"black"
         // fontFamily:'Montserrat_700Bold'
     }
 })

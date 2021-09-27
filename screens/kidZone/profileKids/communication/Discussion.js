@@ -25,25 +25,36 @@ const Discussion = ({ route, navigation }) => {
 
     return (
         <LinearGradient
-            colors={["#24C6DC", "#514A9D"]}
-            start={{ x: 0, y: 0.5 }} end={{ x: 0.6, y: 0.6 }}
+            colors={["yellow", "#FF00FF", "blue"]}
+            start={{ x: 0.1, y: 0.5 }} end={{ x: 1, y: 0.5 }}
             style={styles.container}
         >
             {/* <View style={styles.main}> */}
             <LinearGradient
-                colors={["#24C6DC", "#514A9D"]}
-                start={{ x: 0, y: 0.5 }} end={{ x: 0.6, y: 0.6 }}
+                colors={["yellow", "#FF00FF", "blue"]}
+                start={{ x: 0.1, y: 0.5 }} end={{ x: 1, y: 0.5 }}
                 style={styles.main}
             >
                 <View style={styles.headerContainer}>
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
                     >
-                        <Icon name='left' color='#ecf0f1' size={24} />
+                        <Icon name='left' color='#000' size={24} />
                     </TouchableOpacity>
                     <Text style={styles.username}>{itemName}</Text>
                     <Image source={require('../../../../assets/images/kids/boy2.jpg')} style={styles.avatar} />
                 </View>
+                <Image source={require('../../../../assets/images/parentZone/mapMonde.png')}
+                    style={{
+                        width: 400,
+                        height: 600,
+                        position: 'absolute',
+                        shadowOpacity: 0.2,
+                        top: 110,
+                        opacity: 0.2,
+                        tintColor: 'blue'
+                    }}
+                />
                 <ScrollView showsVerticalScrollIndicator={false}>
 
                     <FlatList
@@ -131,7 +142,7 @@ const styles = StyleSheet.create({
         paddingBottom: 12
     },
     username: {
-        color: "#ecf0f1",
+        color: "#000",
         // fontFamily:'Montserrat_700Bold',
         fontSize: 20,
         flex: 1,

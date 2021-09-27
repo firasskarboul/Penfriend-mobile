@@ -71,9 +71,9 @@ export default class _AddPost extends React.Component {
                         justifyContent: 'space-around',
                         flexDirection: 'row'
                     }}>
-                        <Text style={{ ...styles.title, color: 'red', shadowColor: 'red' }}>ADD </Text>
+                        <Text style={{ ...styles.title, color: '#FF00FF', shadowColor: 'red' }}>ADD </Text>
                         <Text style={{ ...styles.title, color: 'yellow', shadowColor: 'yellow' }}>NEW </Text>
-                        <Text style={{ ...styles.title, color: 'red', shadowColor: 'red' }}>POST</Text>
+                        <Text style={{ ...styles.title, color: '#FF00FF', shadowColor: 'red' }}>POST</Text>
                     </View>
                     <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false} >
                         <KeyboardAvoidingView style={{
@@ -113,8 +113,8 @@ export default class _AddPost extends React.Component {
                                     } : {
                                         marginTop: 60,
                                         marginBottom: 8,
-                                        width: 162,
-                                        height: 190,
+                                        width: 207,
+                                        height: 235,
                                         borderRadius: 0
                                     }} />
                             <LinearGradient
